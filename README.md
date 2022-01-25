@@ -1,6 +1,6 @@
 # andre_house
 
-A new Flutter project.
+This is our Andre House project!
 
 ## Getting Started
 
