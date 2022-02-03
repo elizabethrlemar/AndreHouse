@@ -15,59 +15,65 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Andre House'),
       ),
       body: Column(children: <Widget>[
-        Container(
+        Expanded(
+        child: Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Column(
             children: const <Widget>[
-              IconButton(
+              Expanded(
+              child: IconButton(
                 icon: Icon(Icons.shower),
-                iconSize: 150,
-                color: Colors.blue,
+                iconSize: 100,
+                color: Colors.red,
                 onPressed: null,
-              ),
+              ),),
               Text(
                 'Shower',
                 style: TextStyle(fontSize: 20),
               ),
             ],
-          ),),
+          ),),),
         //icon with label below it
-        Container(
+        Expanded(
+        child: Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Column(
             children: const <Widget>[
-              IconButton(
+              Expanded(
+              child: IconButton(
                 icon: Icon(Icons.checkroom),
-                iconSize: 150,
+                iconSize: 100,
                 color: Colors.red,
                 onPressed: null,
-              ),
+              ),),
               Text(
                 'Clothing Closet',
                 style: TextStyle(fontSize: 20),
               ),
             ],
           ),
-        ),
-        Container(
+        ),),
+        Expanded(
+        child: Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Column(
             children: const <Widget>[
-              IconButton(
+              Expanded(
+              child: IconButton(
                 icon: Icon(Icons.help),
-                iconSize: 150,
+                iconSize: 100,
                 color: Colors.red,
                 onPressed: null,
-              ),
+              ),),
               Text(
                 'Help',
                 style: TextStyle(fontSize: 20),
               ),
             ],
-          ),),
+          ),),),
       ]),
     );
   }
