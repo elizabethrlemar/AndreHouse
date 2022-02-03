@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:loginpage/UI/input_field.dart';
-import 'package:loginpage/home_page.dart';
+import 'package:andre_house/UI/input_field.dart';
+import 'package:andre_house/home_page.dart';
 
 void main() => runApp(const MyApp());
 
