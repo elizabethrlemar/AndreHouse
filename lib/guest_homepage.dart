@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import "clothing.dart";
+import "shower.dart";
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
   @override
@@ -20,15 +21,19 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Column(
-            children: const <Widget>[
+            children: <Widget>[
               Expanded(
               child: IconButton(
-                icon: Icon(Icons.shower),
+                icon: const Icon(Icons.shower),
                 iconSize: 100,
-                color: Colors.red,
-                onPressed: null,
+                color: Colors.blue,
+                onPressed: () {
+                 Navigator.push(
+                 context,
+                 MaterialPageRoute(builder: (context) => const ShowerPage()),
+                );}, // onPressed
               ),),
-              Text(
+              const Text(
                 'Shower',
                 style: TextStyle(fontSize: 20),
               ),
@@ -40,15 +45,19 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Column(
-            children: const <Widget>[
+            children: <Widget>[
               Expanded(
               child: IconButton(
-                icon: Icon(Icons.checkroom),
+                icon: const Icon(Icons.checkroom),
                 iconSize: 100,
                 color: Colors.red,
-                onPressed: null,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ClothingPage()),
+                  );}, // onPressed
               ),),
-              Text(
+              const Text(
                 'Clothing Closet',
                 style: TextStyle(fontSize: 20),
               ),
