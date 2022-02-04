@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import "clothing.dart";
-import "shower.dart";
+import 'guest_shower.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
   @override
@@ -45,19 +45,16 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Column(
-            children: <Widget>[
+            children: const <Widget>[
               Expanded(
               child: IconButton(
-                icon: const Icon(Icons.checkroom),
+                icon: Icon(Icons.checkroom),
                 iconSize: 100,
                 color: Colors.red,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ClothingPage()),
-                  );}, // onPressed
-              ),),
-              const Text(
+                onPressed: null, // onPressed
+                ),
+              ),
+              Text(
                 'Clothing Closet',
                 style: TextStyle(fontSize: 20),
               ),

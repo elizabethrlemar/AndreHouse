@@ -1,13 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:andre_house/UI/input_field.dart';
-import 'package:andre_house/home_page.dart';
+import 'package:andre_house/StaffPages/staff_homepage.dart';
+import 'package:andre_house/GuestPages/guest_homepage.dart';
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -21,9 +21,7 @@ class MyApp extends StatelessWidget {
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   //StateFullWidget
-
   @override
   HomeScreenState createState() => HomeScreenState();
 }
@@ -95,7 +93,7 @@ class HomeScreenState extends State<HomeScreen> {
                         //Raised Button
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => MyHomePage()));
+                              builder: (context) => MyStaffHomePage()));
                         },
                         color: Colors.indigo,
                         textColor: Colors.white,
