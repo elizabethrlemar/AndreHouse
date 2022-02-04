@@ -1,4 +1,5 @@
 import 'package:andre_house/StaffPages/staff_clothing.dart';
+import 'staff_shower.dart';
 import 'package:flutter/material.dart';
 
 class MyStaffHomePage extends StatefulWidget {
@@ -22,14 +23,18 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
             padding: const EdgeInsets.all(10),
             alignment: Alignment.center,
             child: Column(
-              children: const <Widget>[
+              children: <Widget>[
                 Expanded(
                   child: IconButton(
                     padding: EdgeInsets.all(10),
                     icon: Icon(Icons.shower),
                     iconSize: 100,
                     color: Colors.blue,
-                    onPressed: null,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const StaffShowerPage()),
+                        );}
                   ),),
                 Text(
                   'Shower',

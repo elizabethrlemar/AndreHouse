@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class StaffClothingPage extends StatefulWidget {
-  const StaffClothingPage({Key? key}) : super(key: key);
+class GuestClothingPage extends StatefulWidget {
+  const GuestClothingPage({Key? key}) : super(key: key);
   @override
   _ClothingState createState() => _ClothingState();
 }
 
-class _ClothingState extends State<StaffClothingPage> {
+class _ClothingState extends State<GuestClothingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
