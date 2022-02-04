@@ -16,6 +16,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
         title: const Text('Dashboard'),
       ),
       body: Column(children: <Widget>[
+        // Shower Button
         Expanded(
           child: Container(
             padding: const EdgeInsets.all(10),
@@ -24,7 +25,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
               children: const <Widget>[
                 Expanded(
                   child: IconButton(
-                    padding: const EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10),
                     icon: Icon(Icons.shower),
                     iconSize: 100,
                     color: Colors.blue,
@@ -37,6 +38,8 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
               ],
             ),),),
         //icon with label below it
+
+        // Clothing closet button
         Expanded(
           child: Container(
             padding: const EdgeInsets.all(10),
@@ -45,19 +48,21 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
               children: const <Widget>[
                 Expanded(
                   child: IconButton(
-                    padding: const EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10),
                     icon: Icon(Icons.checkroom),
                     iconSize: 100,
                     color: Colors.pink,
                     onPressed: null,
                   ),),
-                const Text(
+                Text(
                   'Clothing Closet',
                   style: TextStyle(fontSize: 20),
                 ),
               ],
             ),
           ),),
+
+        // Existing Account Button
         Expanded(
           child: Container(
             padding: const EdgeInsets.all(10),
@@ -77,6 +82,8 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                 ),
               ],
             ),),),
+
+        // New Account Button
         Expanded(
           child: Container(
             padding: const EdgeInsets.all(10),
@@ -97,6 +104,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
               ],
             ),),),
 
+        // Help Button
         Expanded(
           child: Container(
             padding: const EdgeInsets.all(10),
