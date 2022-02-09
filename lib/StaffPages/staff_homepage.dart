@@ -50,14 +50,18 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
             padding: const EdgeInsets.all(10),
             alignment: Alignment.center,
             child: Column(
-              children: const <Widget>[
+              children: <Widget>[
                 Expanded(
                   child: IconButton(
                     padding: EdgeInsets.all(10),
                     icon: Icon(Icons.checkroom),
                     iconSize: 100,
                     color: Colors.pink,
-                    onPressed: null,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const StaffClothingPage()),
+                      );}
                   ),),
                 Text(
                   'Clothing Closet',
