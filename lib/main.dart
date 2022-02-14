@@ -1,17 +1,22 @@
+
 import 'package:flutter/material.dart';
-import 'guest_homepage.dart';
-void main() => runApp(MyApp());
+import 'package:andre_house/UI/input_field.dart';
+import 'package:andre_house/StaffPages/staff_homepage.dart';
+import 'package:andre_house/GuestPages/guest_homepage.dart';
+import 'login_page.dart';
+
+void main() async=> runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Icon Tutorial',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: const MyHomePage(),
+    return const MaterialApp(
+      //Material App
+      debugShowCheckedModeBanner: false,
+      title: "Login App",
+      home: HomeScreen(),
     );
   }
 }
+
