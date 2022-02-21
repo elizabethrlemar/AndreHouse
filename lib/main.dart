@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       //Material App
       debugShowCheckedModeBanner: false,
       title: "Login App",
-      home: SignUpScreen(),
+      home: HomeScreen(),
     );
   }
 }

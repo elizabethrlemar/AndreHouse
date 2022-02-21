@@ -1,3 +1,4 @@
+import 'package:andre_house/guest_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:andre_house/UI/input_field.dart';
 import 'package:andre_house/StaffPages/staff_homepage.dart';
@@ -105,6 +106,25 @@ class HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
+                    ),
+                    Container(
+                      child:
+                        Row(
+                          children: <Widget> [
+                            const Text ("Don't have an account?"),
+                            TextButton(
+                              child: const Text(
+                                "Sign Up!",
+                                style: TextStyle(fontSize: 20, color: Colors.white),
+                              ),
+                              onPressed: (){
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => SignUpScreen()));
+                              },
+                            ),
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.center,
+                        )
                     ),
                   ],
                 ),
