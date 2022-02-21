@@ -12,6 +12,7 @@ class _ShowerState extends State<StaffShowerPage> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Shower'),
+        backgroundColor: Colors.blue,
       ),
       body: Center(
         child: ElevatedButton(

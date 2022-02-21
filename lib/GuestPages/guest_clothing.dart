@@ -13,6 +13,7 @@ class _ClothingState extends State<GuestClothingPage> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Clothing Closet'),
+        backgroundColor: Colors.pink,
       ),
       body: Center(
         child: ElevatedButton(
