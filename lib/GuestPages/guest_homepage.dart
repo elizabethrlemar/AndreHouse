@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: IconButton(
                               icon: Icon(Icons.help),
                               iconSize: 100,
-                              color: Colors.red,
+                              color: Colors.amber,
                               onPressed: (){
                                 Navigator.push(
                                   context,

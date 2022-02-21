@@ -56,18 +56,7 @@ class HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Material(
-                        elevation: 10.0,
-                        borderRadius:
-                        const BorderRadius.all(Radius.circular(50.0)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(
-                            "app_icon_1024.png",
-                            width: 80,
-                            height: 80,
-                          ),
-                        )),
+                    Text("Andre House", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40, color: Colors.white),),
                     Form(
                       child: InputField(
                         //Calling inputField  class
