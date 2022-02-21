@@ -92,7 +92,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     ),
                     Container(
                       width: 150,
-                      child: RaisedButto(
+                      child: RaisedButton(
                         //Raised Button
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(

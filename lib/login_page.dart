@@ -1,4 +1,4 @@
-import 'package:andre_house/guest_signup.dart';
+import 'package:andre_house/GuestPages/guest_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:andre_house/UI/input_field.dart';
 import 'package:andre_house/StaffPages/staff_homepage.dart';
