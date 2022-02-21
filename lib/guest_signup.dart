@@ -1,7 +1,6 @@
 import 'package:andre_house/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:andre_house/UI/input_field.dart';
-import 'package:andre_house/StaffPages/staff_homepage.dart';
 import 'package:andre_house/GuestPages/guest_homepage.dart';
 //import 'package:firebase_core/firebase_core.dart';
 
@@ -93,7 +92,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     ),
                     Container(
                       width: 150,
-                      child: RaisedButton(
+                      child: RaisedButto(
                         //Raised Button
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
