@@ -63,7 +63,7 @@ class HomeScreenState extends State<HomeScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Image.asset(
-                            "images/flutter-logo.png",
+                            "app_icon_1024.png",
                             width: 80,
                             height: 80,
                           ),
