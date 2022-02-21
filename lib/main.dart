@@ -7,6 +7,8 @@ import 'package:andre_house/GuestPages/guest_homepage.dart';
 import 'login_page.dart';
 import 'GuestPages/guest_signup.dart';
 import 'GuestPages/help_page.dart';
+
+
 void main() async=> runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       //Material App
       debugShowCheckedModeBanner: false,
       title: "Login App",
-      home: HomeScreen(),
+      home: MyStaffHomePage(),
     );
   }
 }

@@ -10,6 +10,7 @@ class _HelpState extends State<GuestHelpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Help'),
       ),
       body: ListView(

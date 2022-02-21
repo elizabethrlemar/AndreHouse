@@ -1,7 +1,7 @@
 import 'package:andre_house/StaffPages/staff_clothing.dart';
 import 'staff_shower.dart';
 import 'package:flutter/material.dart';
-
+import 'package:andre_house/GuestPages/help_page.dart';
 class MyStaffHomePage extends StatefulWidget {
   const MyStaffHomePage({Key? key}) : super(key: key);
   @override
@@ -13,6 +13,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Dashboard'),
       ),
       body: Center(
@@ -129,13 +130,17 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   child: Column(
-                    children: const <Widget>[
+                    children: <Widget>[
                       Expanded(
                         child: IconButton(
                           icon: Icon(Icons.help),
                           iconSize: 100,
                           color: Colors.green,
-                          onPressed: null,
+                            onPressed: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const GuestHelpPage()),
+                              );}
                         ),
                       ),
                       Text(

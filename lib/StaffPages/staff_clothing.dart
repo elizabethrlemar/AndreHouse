@@ -11,6 +11,7 @@ class _ClothingState extends State<StaffClothingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Clothing Closet'),
       ),
       body: Center(

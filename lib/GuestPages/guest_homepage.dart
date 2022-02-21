@@ -15,6 +15,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Andre House'),
       ),
       body: Center(
@@ -86,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: IconButton(
                               icon: Icon(Icons.help),
                               iconSize: 100,
-                              color: Colors.amber,
+                              color: Colors.green,
                               onPressed: (){
                                 Navigator.push(
                                   context,

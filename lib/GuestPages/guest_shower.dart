@@ -10,6 +10,7 @@ class _ShowerState extends State<GuestShowerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Shower'),
       ),
       body: Center(
