@@ -3,7 +3,7 @@ import '../User/user.dart';
 
 final databaseReference = FirebaseDatabase.instance.reference();
 
-DatabaseReference newUser(User user) {
+DatabaseReference createUser(User user) {
   var id = databaseReference.child('users/').push();
-  id.set({});
+  return id;
 }
