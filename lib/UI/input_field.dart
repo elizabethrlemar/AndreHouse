@@ -39,7 +39,7 @@ class _InputFieldState extends State<InputField> {
               width: 200,
               height: 60,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(5.0),
                 child: Form(
                   child: TextField(
                     //TestField
