@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "961241936685",
+    "firebase_url": "https://andrehouse-e8abe-default-rtdb.firebaseio.com",
+    "project_id": "andrehouse-e8abe",
+    "storage_bucket": "andrehouse-e8abe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961241936685:android:faf395ac4319e5178459a4",
+        "android_client_info": {
+          "package_name": "com.example.andre_house"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961241936685-vsq3ennl4km1p3imkeu14jpu2aqc3vpe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvbQTVfzE7A6Xo_exagQZU1taRgk9nFVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961241936685-vsq3ennl4km1p3imkeu14jpu2aqc3vpe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
