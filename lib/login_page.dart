@@ -3,6 +3,7 @@ import 'package:andre_house/UI/input_field.dart';
 import 'package:andre_house/StaffPages/staff_homepage.dart';
 import 'package:andre_house/GuestPages/guest_homepage.dart';
 //import 'package:firebase_core/firebase_core.dart';
+/* Login Page*/
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

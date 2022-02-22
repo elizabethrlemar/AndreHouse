@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+/*Class which accepts text input */
 class InputField extends StatefulWidget {
   Icon fieldIcon;
   String hintText;

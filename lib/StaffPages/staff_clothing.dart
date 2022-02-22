@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+/*Page for staff to manage clothing closet*/
 class StaffClothingPage extends StatefulWidget {
   const StaffClothingPage({Key? key}) : super(key: key);
   @override

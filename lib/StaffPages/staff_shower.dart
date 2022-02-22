@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+/*Page for staff to manage showers*/
 class StaffShowerPage extends StatefulWidget {
   const StaffShowerPage({Key? key}) : super(key: key);
   @override

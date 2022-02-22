@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'guest_shower.dart';
 import 'guest_clothing.dart';
 
+/* Homepage for guests, contains buttons for each page*/
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
   @override
@@ -27,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.all(20),
                   alignment: Alignment.center,
                   child: Column(
-                    children: <Widget>[
+                    children: <Widget>[ //Shower Button
                       Expanded(
                         child: IconButton(
                           icon: const Icon(Icons.shower),
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.all(20),
                       alignment: Alignment.center,
                       child: Column(
-                        children: <Widget>[
+                        children: <Widget>[ //Clothing Button
                           Expanded(
                             child: IconButton(
                                 icon: Icon(Icons.checkroom),
@@ -80,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.all(20),
                       alignment: Alignment.center,
                       child: Column(
-                        children: const <Widget>[
+                        children: const <Widget>[ //Help Button
                           Expanded(
                             child: IconButton(
                               icon: Icon(Icons.help),
