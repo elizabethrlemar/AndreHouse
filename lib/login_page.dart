@@ -114,6 +114,27 @@ class HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                         )
                     ),
+                    Container(
+                      width: 200,
+                      child: RaisedButton(
+                        //Raised Button
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => MyHomePage()));
+                        },
+                        color: Colors.green,
+                        textColor: Colors.white,
+                        child: const Text(
+                          "Anonymous Login",
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

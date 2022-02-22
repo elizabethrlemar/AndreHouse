@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       //Material App
       debugShowCheckedModeBanner: false,
       title: "Login App",
-      home: MyStaffHomePage(),
+      home: HomeScreen(),
     );
   }
 }
