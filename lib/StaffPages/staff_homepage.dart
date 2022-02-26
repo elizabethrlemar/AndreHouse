@@ -13,7 +13,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: const Text('Andre House'),
       ),
       body: Center(
         child: Container(
