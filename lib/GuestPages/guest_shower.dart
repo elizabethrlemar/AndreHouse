@@ -14,12 +14,13 @@ class _ShowerState extends State<GuestShowerPage> {
         title: const Text('Shower'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
-        ),
+        child: Container(
+          child: GridView.count(
+            scrollDirection: Axis.vertical,
+            crossAxisCount: 2,
+            children: <Widget>
+          )
+        )
       ),
     );
   }
