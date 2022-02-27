@@ -14,49 +14,47 @@ class _ShowerState extends State<GuestShowerPage> {
         title: const Text('Shower'),
       ),
       body: Center(
-        child: Container(
-          child: GridView.count(
-            scrollDirection: Axis.vertical,
-            crossAxisCount: 2,
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: IconButton(
-                        icon: const Icon(Icons.shower),
-                        iconSize: 100,
-                        color: Colors.blue,
-                        onPressed: () {},
-                      )
-                    ),
-                      const Text(
-                        'Sign-Up',
-                        style: TextStyle(fontSize: 20),
-                      )
+        child: GridView.count(
+          scrollDirection: Axis.vertical,
+          crossAxisCount: 2,
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: IconButton(
+                      icon: const Icon(Icons.shower),
+                      iconSize: 100,
+                      color: Colors.blue,
+                      onPressed: () {},
+                    )
+                  ),
+                    const Text(
+                      'Sign-Up',
+                      style: TextStyle(fontSize: 20),
+                    )
+                ]
+              )
+            ),
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: IconButton(
+                      icon: const Icon(Icons.numbers),
+                      iconSize: 100,
+                      color: Colors.red,
+                       onPressed: () {},
+                    )
+                  ),
+                    const Text(
+                      "My Spot in Line",
+                      style: TextStyle(fontSize: 20),
+                    )
                   ]
                 )
-              ),
-              Expanded(
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: IconButton(
-                        icon: const Icon(Icons.numbers),
-                        iconSize: 100,
-                        color: Colors.red,
-                         onPressed: () {},
-                      )
-                    ),
-                      const Text(
-                        "My Spot in Line",
-                        style: TextStyle(fontSize: 20),
-                      )
-                    ]
-                  )
-              ),
-            ]
-          )
+            ),
+          ]
         )
       ),
     );
