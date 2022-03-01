@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+/*Page for staff to manage showers*/
 class StaffShowerPage extends StatefulWidget {
   const StaffShowerPage({Key? key}) : super(key: key);
   @override
@@ -13,12 +14,48 @@ class _ShowerState extends State<StaffShowerPage> {
         title: const Text('Shower'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
-        ),
+          child: GridView.count(
+              scrollDirection: Axis.vertical,
+              crossAxisCount: 2,
+              children: <Widget>[
+                Expanded(
+                    child: Column(
+                        children: <Widget>[
+                          Expanded(
+                              child: IconButton(
+                                icon: const Icon(Icons.shower),
+                                iconSize: 100,
+                                color: Colors.blue,
+                                onPressed: () {},
+                              )
+                          ),
+                          const Text(
+                            'View Line',
+                            style: TextStyle(fontSize: 20),
+                          )
+                        ]
+                    )
+                ),
+                Expanded(
+                    child: Column(
+                        children: <Widget>[
+                          Expanded(
+                              child: IconButton(
+                                icon: const Icon(Icons.tune),
+                                iconSize: 100,
+                                color: Colors.green,
+                                onPressed: () {},
+                              )
+                          ),
+                          const Text(
+                            "Manage Line",
+                            style: TextStyle(fontSize: 20),
+                          )
+                        ]
+                    )
+                ),
+              ]
+          )
       ),
     );
   }

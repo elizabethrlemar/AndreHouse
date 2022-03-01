@@ -1,7 +1,7 @@
 import 'package:andre_house/StaffPages/staff_clothing.dart';
 import 'staff_shower.dart';
 import 'package:flutter/material.dart';
-
+/*Staff Homepage, contains all needed links*/
 class MyStaffHomePage extends StatefulWidget {
   const MyStaffHomePage({Key? key}) : super(key: key);
   @override
@@ -13,7 +13,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: const Text('Andre House'),
       ),
       body: Center(
         child: Container(
@@ -26,7 +26,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   child: Column(
-                    children: <Widget>[
+                    children: <Widget>[ //Shower Button
                       Expanded(
                         child: IconButton(
                             padding: EdgeInsets.all(10),
@@ -54,7 +54,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   child: Column(
-                    children: <Widget>[
+                    children: <Widget>[ //Clothing Closet Button
                       Expanded(
                         child: IconButton(
                             padding: EdgeInsets.all(10),
@@ -85,7 +85,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   child: Column(
                     children: const <Widget>[
                       Expanded(
-                        child: IconButton(
+                        child: IconButton( //Guest List Button
                           icon: Icon(Icons.account_circle),
                           iconSize: 100,
                           color: Colors.purple,
@@ -106,7 +106,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   child: Column(
-                    children: const <Widget>[
+                    children: const <Widget>[ //Account Creation Button
                       Expanded(
                         child: IconButton(
                           icon: Icon(Icons.add_circle),
@@ -123,13 +123,12 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   ),
                 ),
               ),
-              // Help Button
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   child: Column(
-                    children: const <Widget>[
+                    children: const <Widget>[ // Help Button
                       Expanded(
                         child: IconButton(
                           icon: Icon(Icons.help),
