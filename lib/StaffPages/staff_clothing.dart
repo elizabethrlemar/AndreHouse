@@ -14,12 +14,48 @@ class _ClothingState extends State<StaffClothingPage> {
         title: const Text('Clothing Closet'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
-        ),
+          child: GridView.count(
+              scrollDirection: Axis.vertical,
+              crossAxisCount: 2,
+              children: <Widget>[
+                Expanded(
+                    child: Column(
+                        children: <Widget>[
+                          Expanded(
+                              child: IconButton(
+                                icon: const Icon(Icons.checkroom),
+                                iconSize: 100,
+                                color: Colors.blue,
+                                onPressed: () {},
+                              )
+                          ),
+                          const Text(
+                            'View Line',
+                            style: TextStyle(fontSize: 20),
+                          )
+                        ]
+                    )
+                ),
+                Expanded(
+                    child: Column(
+                        children: <Widget>[
+                          Expanded(
+                              child: IconButton(
+                                icon: const Icon(Icons.tune),
+                                iconSize: 100,
+                                color: Colors.red,
+                                onPressed: () {},
+                              )
+                          ),
+                          const Text(
+                            "Manage Line",
+                            style: TextStyle(fontSize: 20),
+                          )
+                        ]
+                    )
+                ),
+              ]
+          )
       ),
     );
   }

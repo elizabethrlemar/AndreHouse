@@ -41,7 +41,7 @@ class _ShowerState extends State<StaffShowerPage> {
                         children: <Widget>[
                           Expanded(
                               child: IconButton(
-                                icon: const Icon(Icons.numbers),
+                                icon: const Icon(Icons.tune),
                                 iconSize: 100,
                                 color: Colors.red,
                                 onPressed: () {},
