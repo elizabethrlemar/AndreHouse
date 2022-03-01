@@ -11,7 +11,9 @@ class _ShowerState extends State<StaffShowerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Shower'),
+        backgroundColor: Colors.blue,
       ),
       body: Center(
           child: GridView.count(

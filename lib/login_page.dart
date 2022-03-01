@@ -1,10 +1,8 @@
-import 'package:andre_house/guest_signup.dart';
+import 'package:andre_house/GuestPages/guest_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:andre_house/UI/input_field.dart';
 import 'package:andre_house/StaffPages/staff_homepage.dart';
 import 'package:andre_house/GuestPages/guest_homepage.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:andre_house/wrapper.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -57,18 +55,7 @@ class HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Material(
-                        elevation: 10.0,
-                        borderRadius:
-                        const BorderRadius.all(Radius.circular(50.0)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(
-                            "images/flutter-logo.png",
-                            width: 80,
-                            height: 80,
-                          ),
-                        )),
+                    Text("Andre House", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40, color: Colors.white),),
                     Form(
                       child: InputField(
                         //Calling inputField  class
@@ -112,7 +99,7 @@ class HomeScreenState extends State<HomeScreen> {
                       child:
                         Row(
                           children: <Widget> [
-                            const Text ("Don't have an account?"),
+                            const Text ("Don't have an account?", style: TextStyle(fontSize: 20)),
                             TextButton(
                               child: const Text(
                                 "Sign Up!",
@@ -126,6 +113,27 @@ class HomeScreenState extends State<HomeScreen> {
                           ],
                           mainAxisAlignment: MainAxisAlignment.center,
                         )
+                    ),
+                    Container(
+                      width: 200,
+                      child: RaisedButton(
+                        //Raised Button
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => MyHomePage()));
+                        },
+                        color: Colors.green,
+                        textColor: Colors.white,
+                        child: const Text(
+                          "Anonymous Login",
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

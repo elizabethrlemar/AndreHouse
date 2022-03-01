@@ -11,7 +11,9 @@ class _ClothingState extends State<GuestClothingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Clothing Closet'),
+        backgroundColor: Colors.pink,
       ),
       body: Center(
           child: GridView.count(
