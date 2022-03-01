@@ -25,7 +25,7 @@ class _ClothingState extends State<StaffClothingPage> {
                               child: IconButton(
                                 icon: const Icon(Icons.checkroom),
                                 iconSize: 100,
-                                color: Colors.blue,
+                                color: Colors.red,
                                 onPressed: () {},
                               )
                           ),
@@ -43,7 +43,7 @@ class _ClothingState extends State<StaffClothingPage> {
                               child: IconButton(
                                 icon: const Icon(Icons.tune),
                                 iconSize: 100,
-                                color: Colors.red,
+                                color: Colors.green,
                                 onPressed: () {},
                               )
                           ),
