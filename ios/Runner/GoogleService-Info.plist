@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>961241936685-9mic98vp97se10nshh84dnja4427ssa5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.961241936685-9mic98vp97se10nshh84dnja4427ssa5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAbhfhgo2k-kbOxbfPbqLN8VkGF_sr__Ro</string>
+	<key>GCM_SENDER_ID</key>
+	<string>961241936685</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.andreHouse</string>
+	<key>PROJECT_ID</key>
+	<string>andrehouse-e8abe</string>
+	<key>STORAGE_BUCKET</key>
+	<string>andrehouse-e8abe.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:961241936685:ios:37f6592579d489ef8459a4</string>
+	<key>DATABASE_URL</key>
+	<string>https://andrehouse-e8abe-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

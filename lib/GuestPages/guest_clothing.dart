@@ -39,14 +39,6 @@ class _ClothingState extends State<GuestClothingPage> {
                 Expanded(
                     child: Column(
                         children: <Widget>[
-                          Expanded(
-                              child: IconButton(
-                                icon: Icon(Icons.numbers),
-                                iconSize: 100,
-                                color: Colors.green,
-                                onPressed: () {},
-                              )
-                          ),
                           const Text(
                             "My Spot in Line",
                             style: TextStyle(fontSize: 20),
