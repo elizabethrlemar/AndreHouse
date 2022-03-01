@@ -1,10 +1,8 @@
-import 'package:andre_house/guest_signup.dart';
+import 'package:andre_house/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:andre_house/UI/input_field.dart';
-import 'package:andre_house/StaffPages/staff_homepage.dart';
 import 'package:andre_house/GuestPages/guest_homepage.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:andre_house/wrapper.dart';
+//import 'package:firebase_core/firebase_core.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -13,20 +11,20 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       //Material App
       debugShowCheckedModeBanner: false,
-      title: "Login App",
-      home: HomeScreen(),
+      title: "Guest Sign-up",
+      home: SignUpScreen(),
     );
   }
 }
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
   //StateFullWidget
   @override
-  HomeScreenState createState() => HomeScreenState();
+  SignUpScreenState createState() => SignUpScreenState();
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,23 +50,20 @@ class HomeScreenState extends State<HomeScreen> {
             ),
             Center(
               child: Container(
-                width: 400,
-                height: 400,
+                width: 500,
+                height: 500,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Material(
-                        elevation: 10.0,
-                        borderRadius:
-                        const BorderRadius.all(Radius.circular(50.0)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(
-                            "images/flutter-logo.png",
-                            width: 80,
-                            height: 80,
+                    Form(
+                      child: InputField(
+                        //Calling inputField  class
+                          const Icon(
+                            Icons.person,
+                            color: Colors.white,
                           ),
-                        )),
+                          "Full Name"),
+                    ),
                     Form(
                       child: InputField(
                         //Calling inputField  class
@@ -87,9 +82,17 @@ class HomeScreenState extends State<HomeScreen> {
                           ),
                           "Password"),
                     ),
+                    Form(
+                      child: InputField(
+                          const Icon(
+                            Icons.lock,
+                            color: Colors.white,
+                          ),
+                          "Confirm Password"),
+                    ),
                     Container(
                       width: 150,
-                      child: RaisedButton(
+                      child: RaisedButto(
                         //Raised Button
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -98,7 +101,7 @@ class HomeScreenState extends State<HomeScreen> {
                         color: Colors.indigo,
                         textColor: Colors.white,
                         child: const Text(
-                          "Login",
+                          "Sign Up",
                           style: TextStyle(fontSize: 20.0),
                         ),
                         shape: const RoundedRectangleBorder(
@@ -109,18 +112,18 @@ class HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Container(
-                      child:
+                        child:
                         Row(
                           children: <Widget> [
-                            const Text ("Don't have an account?"),
+                            const Text ("Already have an account?"),
                             TextButton(
                               child: const Text(
-                                "Sign Up!",
+                                "Log In!",
                                 style: TextStyle(fontSize: 20, color: Colors.white),
                               ),
                               onPressed: (){
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => SignUpScreen()));
+                                    builder: (context) => HomeScreen()));
                               },
                             ),
                           ],
