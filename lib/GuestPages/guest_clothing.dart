@@ -41,7 +41,7 @@ class _ClothingState extends State<GuestClothingPage> {
                         children: <Widget>[
                           Expanded(
                               child: IconButton(
-                                icon: const Icon(Icons.numbers),
+                                icon: Icon(Icons.numbers),
                                 iconSize: 100,
                                 color: Colors.green,
                                 onPressed: () {},
