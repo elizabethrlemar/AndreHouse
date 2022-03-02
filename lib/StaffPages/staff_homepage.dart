@@ -27,7 +27,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   child: Column(
-                    children: <Widget>[
+                    children: <Widget>[ //Shower Button
                       Expanded(
                         child: IconButton(
                             padding: EdgeInsets.all(10),
@@ -55,7 +55,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   child: Column(
-                    children: <Widget>[
+                    children: <Widget>[ //Clothing Closet Button
                       Expanded(
                         child: IconButton(
                             padding: EdgeInsets.all(10),
@@ -86,7 +86,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   child: Column(
                     children: const <Widget>[
                       Expanded(
-                        child: IconButton(
+                        child: IconButton( //Guest List Button
                           icon: Icon(Icons.account_circle),
                           iconSize: 100,
                           color: Colors.purple,
@@ -107,7 +107,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   child: Column(
-                    children: const <Widget>[
+                    children: const <Widget>[ //Account Creation Button
                       Expanded(
                         child: IconButton(
                           icon: Icon(Icons.add_circle),
@@ -124,7 +124,6 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   ),
                 ),
               ),
-              // Help Button
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(10),

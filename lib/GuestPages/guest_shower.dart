@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+/*Page that allows guests to sign up for showers*/
 class GuestShowerPage extends StatefulWidget {
   const GuestShowerPage({Key? key}) : super(key: key);
   @override
@@ -15,12 +16,48 @@ class _ShowerState extends State<GuestShowerPage> {
         backgroundColor: Colors.blue,
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
-        ),
+        child: GridView.count(
+          scrollDirection: Axis.vertical,
+          crossAxisCount: 2,
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: IconButton(
+                      icon: const Icon(Icons.shower),
+                      iconSize: 100,
+                      color: Colors.blue,
+                      onPressed: () {},
+                    )
+                  ),
+                    const Text(
+                      'Sign-Up',
+                      style: TextStyle(fontSize: 20),
+                    )
+                ]
+              )
+            ),
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: IconButton(
+                      icon: const Icon(Icons.numbers),
+                      iconSize: 100,
+                      color: Colors.green,
+                       onPressed: () {},
+                    )
+                  ),
+                    const Text(
+                      "My Spot in Line",
+                      style: TextStyle(fontSize: 20),
+                    )
+                  ]
+                )
+            ),
+          ]
+        )
       ),
     );
   }
