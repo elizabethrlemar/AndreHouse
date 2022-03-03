@@ -1,14 +1,6 @@
-
-import 'package:andre_house/GuestPages/help_page.dart';
 import 'package:flutter/material.dart';
-import 'package:andre_house/UI/input_field.dart';
-import 'package:andre_house/StaffPages/staff_homepage.dart';
-import 'package:andre_house/GuestPages/guest_homepage.dart';
 import 'login_page.dart';
-import 'GuestPages/guest_signup.dart';
-import 'GuestPages/help_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 
 void main() async {

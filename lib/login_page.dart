@@ -17,8 +17,8 @@ class HomeScreenState extends State<HomeScreen>{
 
   final formKey = GlobalKey<FormState>();
 
-  final TextEditingController emailController = new TextEditingController();
-  final TextEditingController passwordController = new TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context){
@@ -34,7 +34,7 @@ class HomeScreenState extends State<HomeScreen>{
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
-        prefixIcon: Icon(Icons.person),
+        prefixIcon: const Icon(Icons.person),
         contentPadding: const EdgeInsets.fromLTRB(10, 15, 20, 15),
         hintText: "Email",
         border: OutlineInputBorder(
@@ -70,7 +70,10 @@ class HomeScreenState extends State<HomeScreen>{
           borderRadius: BorderRadius.circular(10),
           child: MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => MyHomePage()));
+            },
             child: const Text("Login", style: TextStyle(fontSize: 20)),
             textColor: Colors.white,
           ),
@@ -85,23 +88,10 @@ class HomeScreenState extends State<HomeScreen>{
         color: Colors.lightBlueAccent,
           child: Stack(
           children: <Widget>[
-            const Align(
-              alignment: Alignment.bottomRight,
-              heightFactor: 0.5,
-              widthFactor: 0.5,
-              child: Material(
-                borderRadius: BorderRadius.all(Radius.circular(200.0)),
-                color: Color.fromRGBO(255, 255, 255, 0.4),
-                child: SizedBox(
-                  width: 400,
-                  height: 400,
-                ),
-              ),
-            ),
             Center(
               child: SizedBox(
                 width: 400,
-                height: 400,
+                height: 450,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,7 +104,7 @@ class HomeScreenState extends State<HomeScreen>{
                         child: Column(
                           children: <Widget>[
                             SizedBox(
-                              height: 75,
+                              height: 90,
                               child: Image.asset("images/logo.png",
                                 fit: BoxFit.contain,
                               ),
