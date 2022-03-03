@@ -11,7 +11,9 @@ class _ClothingState extends State<GuestClothingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Clothing Closet'),
+        backgroundColor: Colors.pink,
       ),
       body: Center(
           child: GridView.count(
@@ -39,14 +41,6 @@ class _ClothingState extends State<GuestClothingPage> {
                 Expanded(
                     child: Column(
                         children: <Widget>[
-                          Expanded(
-                              child: IconButton(
-                                icon: const Icon(Icons.numbers),
-                                iconSize: 100,
-                                color: Colors.green,
-                                onPressed: () {},
-                              )
-                          ),
                           const Text(
                             "My Spot in Line",
                             style: TextStyle(fontSize: 20),

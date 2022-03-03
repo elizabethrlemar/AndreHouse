@@ -62,7 +62,16 @@ class SignUpScreenState extends State<SignUpScreen> {
                             Icons.person,
                             color: Colors.white,
                           ),
-                          "Full Name"),
+                          "First Name"),
+                    ),
+                    Form(
+                      child: InputField(
+                        //Calling inputField  class
+                          const Icon(
+                            Icons.person,
+                            color: Colors.white,
+                          ),
+                          "Last Name"),
                     ),
                     Form(
                       child: InputField(
@@ -92,7 +101,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     ),
                     Container(
                       width: 150,
-                      child: RaisedButto(
+                      child: RaisedButton(
                         //Raised Button
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -115,7 +124,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                         child:
                         Row(
                           children: <Widget> [
-                            const Text ("Already have an account?"),
+                            const Text ("Already have an account?", style: TextStyle(fontSize: 20)),
                             TextButton(
                               child: const Text(
                                 "Log In!",

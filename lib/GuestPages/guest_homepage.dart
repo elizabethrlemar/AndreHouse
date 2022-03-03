@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'guest_shower.dart';
 import 'guest_clothing.dart';
+import 'help_page.dart';
 
-/* Homepage for guests, contains buttons for each page*/
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
   @override
@@ -10,10 +10,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Andre House'),
       ),
       body: Center(
@@ -27,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.all(20),
                   alignment: Alignment.center,
                   child: Column(
-                    children: <Widget>[ //Shower Button
+                    children: <Widget>[
                       Expanded(
                         child: IconButton(
                           icon: const Icon(Icons.shower),
@@ -54,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.all(20),
                       alignment: Alignment.center,
                       child: Column(
-                        children: <Widget>[ //Clothing Button
+                        children: <Widget>[
                           Expanded(
                             child: IconButton(
                                 icon: Icon(Icons.checkroom),
@@ -80,13 +82,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.all(20),
                       alignment: Alignment.center,
                       child: Column(
-                        children: const <Widget>[ //Help Button
+                        children: <Widget>[
                           Expanded(
                             child: IconButton(
                               icon: Icon(Icons.help),
                               iconSize: 100,
-                              color: Colors.red,
-                              onPressed: null,
+                              color: Colors.green,
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const GuestHelpPage()),
+                                );}
                             ),),
                           Text(
                             'Help',
