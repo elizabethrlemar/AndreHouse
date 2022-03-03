@@ -20,13 +20,24 @@ class HomeScreenState extends State<HomeScreen>{
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  final auth = FirebaseAuth.instance;
+
+
   @override
   Widget build(BuildContext context){
     final emailForm = TextFormField(
       autofocus: false,
       controller: emailController,
       keyboardType: TextInputType.emailAddress,
-      //validator: ,
+      validator: (value){
+        if(value!.isEmpty){
+          return("Please enter your email");
+        }
+        if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+[a-z]").hasMatch(value)){
+          return("Please enter a valid email");
+        }
+        return null;
+      },
       onSaved: (value){
         emailController.text = value!;
       },
@@ -46,7 +57,15 @@ class HomeScreenState extends State<HomeScreen>{
       autofocus: false,
       controller: passwordController,
       obscureText: true,
-      //validator: ,
+      validator: (value){
+        RegExp reg = RegExp(r'^.{6,}$');
+        if(value!.isEmpty){
+          return("Please enter your password");
+        }
+        if(!reg.hasMatch(value)){
+          return("Please enter valid password");
+        }
+      },
       onSaved: (value){
         passwordController.text = value!;
       },
@@ -71,8 +90,7 @@ class HomeScreenState extends State<HomeScreen>{
           child: MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => MyHomePage()));
+              logIn(emailController.text, passwordController.text);
             },
             child: const Text("Login", style: TextStyle(fontSize: 20)),
             textColor: Colors.white,
@@ -91,7 +109,7 @@ class HomeScreenState extends State<HomeScreen>{
             Center(
               child: SizedBox(
                 width: 400,
-                height: 450,
+                height: 460,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -169,5 +187,13 @@ class HomeScreenState extends State<HomeScreen>{
         ),
       ),
     );
+  }
+  void logIn(String email, String password) async{
+    if (formKey.currentState!.validate()){
+      await auth.signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) =>
+          Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const MyHomePage())));
+    }
   }
 }

@@ -1,4 +1,7 @@
 import 'package:andre_house/login_page.dart';
+import 'package:andre_house/model/user_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:andre_house/UI/input_field.dart';
 import 'package:andre_house/GuestPages/guest_homepage.dart';
@@ -28,6 +31,8 @@ class SignUpScreenState extends State<SignUpScreen> {
 
   final formKey= GlobalKey<FormState>();
 
+  final auth = FirebaseAuth.instance;
+
   final firstNameEditController = TextEditingController();
   final lastNameEditController = TextEditingController();
   final emailEditController = TextEditingController();
@@ -42,7 +47,16 @@ class SignUpScreenState extends State<SignUpScreen> {
         autofocus: false,
         controller: firstNameEditController,
         keyboardType: TextInputType.name,
-        //validator: ,
+        validator: (value){
+          RegExp reg = RegExp(r'^.{2,}$');
+          if(value!.isEmpty){
+            return("First name cannot be empty");
+          }
+          if(!reg.hasMatch(value)){
+            return("First name must be at least 2 letters");
+          }
+          return null;
+        },
         onSaved: (value){
           firstNameEditController.text = value!;
         },
@@ -62,7 +76,16 @@ class SignUpScreenState extends State<SignUpScreen> {
         autofocus: false,
         controller: lastNameEditController,
         keyboardType: TextInputType.name,
-        //validator: ,
+        validator: (value){
+          RegExp reg = RegExp(r'^.{2,}$');
+          if(value!.isEmpty){
+            return("Last name cannot be empty");
+          }
+          if(!reg.hasMatch(value)){
+            return("Last name must be at least 2 letters");
+          }
+          return null;
+        },
         onSaved: (value){
           lastNameEditController.text = value!;
         },
@@ -82,7 +105,15 @@ class SignUpScreenState extends State<SignUpScreen> {
         autofocus: false,
         controller: emailEditController,
         keyboardType: TextInputType.emailAddress,
-        //validator: ,
+        validator: (value){
+          if(value!.isEmpty){
+            return("Email cannot be empty");
+          }
+          if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+[a-z]").hasMatch(value)){
+            return("Please enter a valid email");
+          }
+          return null;
+        },
         onSaved: (value){
           emailEditController.text = value!;
         },
@@ -102,7 +133,16 @@ class SignUpScreenState extends State<SignUpScreen> {
         autofocus: false,
         controller: passwordEditController,
         obscureText: true,
-        //validator: ,
+        validator: (value){
+          RegExp reg = RegExp(r'^.{6,}$');
+          if(value!.isEmpty){
+            return("Password cannot be empty");
+          }
+          if(!reg.hasMatch(value)){
+            return("Password must be at least 6 letters");
+          }
+          return null;
+        },
         onSaved: (value){
           passwordEditController.text = value!;
         },
@@ -122,7 +162,12 @@ class SignUpScreenState extends State<SignUpScreen> {
         autofocus: false,
         controller: confirmPasswordEditController,
         obscureText: true,
-        //validator: ,
+        validator: (value){
+          if(confirmPasswordEditController.text != passwordEditController.text){
+            return("Passwords don't match");
+          }
+          return null;
+        },
         onSaved: (value){
           confirmPasswordEditController.text = value!;
         },
@@ -146,7 +191,9 @@ class SignUpScreenState extends State<SignUpScreen> {
           borderRadius: BorderRadius.circular(10),
           child: MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
-            onPressed: () {},
+            onPressed: () {
+              signUp(emailEditController.text, passwordEditController.text);
+            },
             child: const Text("Sign Up", style: TextStyle(fontSize: 20)),
             textColor: Colors.white,
           ),
@@ -226,5 +273,35 @@ class SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+  }
+
+  void signUp(String email, String password) async{
+    if(formKey.currentState!.validate()) {
+      await auth.createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => {
+            postDetailsToFirestore()
+      });
+    }
+  }
+
+  postDetailsToFirestore() async{
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    User? user = auth.currentUser;
+
+    UserModel userModel = UserModel();
+
+    userModel.email = user!.email;
+    userModel.uid = user.uid;
+    userModel.firstName = firstNameEditController.text;
+    userModel.lastName = lastNameEditController.text;
+    userModel.userType = "guest";
+
+    await firebaseFirestore
+    .collection("users")
+    .doc(user.uid)
+    .set(userModel.toMap());
+
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => MyHomePage()));
   }
 }
