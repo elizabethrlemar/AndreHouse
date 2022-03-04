@@ -1,3 +1,4 @@
+import 'package:andre_house/login_page.dart';
 import 'package:flutter/material.dart';
 import 'guest_shower.dart';
 import 'guest_clothing.dart';
@@ -15,8 +16,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text("Welcome back, <name>!"),
         centerTitle: true,
-        title: const Text('Andre House'),
+        leading: IconButton(
+          icon: Image.asset("images/door.png"),
+          onPressed: () { },
+        ),
       ),
       body: Center(
           child: Container(
@@ -59,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: <Widget>[
                           Expanded(
                             child: IconButton(
-                                icon: Icon(Icons.checkroom),
+                                icon: const Icon(Icons.checkroom),
                                 iconSize: 100,
                                 color: Colors.pink,
                                 onPressed: () {
@@ -69,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     );} // onPressed
                              ),
                           ),
-                          Text(
+                          const Text(
                             'Clothing Closet',
                             style: TextStyle(fontSize: 20),
                           ),
@@ -94,10 +99,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                   MaterialPageRoute(builder: (context) => const GuestHelpPage()),
                                 );}
                             ),),
-                          Text(
+                          const Text(
                             'Help',
                             style: TextStyle(fontSize: 20),
                           ),
+                          ActionChip(label: const Text("Logout"), onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const HomeScreen()));
+                          }),
                         ],
                       )
                     ),

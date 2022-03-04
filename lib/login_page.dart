@@ -17,8 +17,11 @@ class HomeScreenState extends State<HomeScreen>{
 
   final formKey = GlobalKey<FormState>();
 
-  final TextEditingController emailController = new TextEditingController();
-  final TextEditingController passwordController = new TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  final auth = FirebaseAuth.instance;
+
 
   @override
   Widget build(BuildContext context){
@@ -26,7 +29,15 @@ class HomeScreenState extends State<HomeScreen>{
       autofocus: false,
       controller: emailController,
       keyboardType: TextInputType.emailAddress,
-      //validator: ,
+      validator: (value){
+        if(value!.isEmpty){
+          return("Please enter your email");
+        }
+        if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+[a-z]").hasMatch(value)){
+          return("Please enter a valid email");
+        }
+        return null;
+      },
       onSaved: (value){
         emailController.text = value!;
       },
@@ -34,7 +45,7 @@ class HomeScreenState extends State<HomeScreen>{
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
-        prefixIcon: Icon(Icons.person),
+        prefixIcon: const Icon(Icons.person),
         contentPadding: const EdgeInsets.fromLTRB(10, 15, 20, 15),
         hintText: "Email",
         border: OutlineInputBorder(
@@ -46,7 +57,15 @@ class HomeScreenState extends State<HomeScreen>{
       autofocus: false,
       controller: passwordController,
       obscureText: true,
-      //validator: ,
+      validator: (value){
+        RegExp reg = RegExp(r'^.{6,}$');
+        if(value!.isEmpty){
+          return("Please enter your password");
+        }
+        if(!reg.hasMatch(value)){
+          return("Please enter valid password");
+        }
+      },
       onSaved: (value){
         passwordController.text = value!;
       },
@@ -70,7 +89,9 @@ class HomeScreenState extends State<HomeScreen>{
           borderRadius: BorderRadius.circular(10),
           child: MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
-            onPressed: () {},
+            onPressed: () {
+              logIn(emailController.text, passwordController.text);
+            },
             child: const Text("Login", style: TextStyle(fontSize: 20)),
             textColor: Colors.white,
           ),
@@ -85,23 +106,10 @@ class HomeScreenState extends State<HomeScreen>{
         color: Colors.lightBlueAccent,
           child: Stack(
           children: <Widget>[
-            const Align(
-              alignment: Alignment.bottomRight,
-              heightFactor: 0.5,
-              widthFactor: 0.5,
-              child: Material(
-                borderRadius: BorderRadius.all(Radius.circular(200.0)),
-                color: Color.fromRGBO(255, 255, 255, 0.4),
-                child: SizedBox(
-                  width: 400,
-                  height: 400,
-                ),
-              ),
-            ),
             Center(
               child: SizedBox(
                 width: 400,
-                height: 400,
+                height: 460,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,7 +122,7 @@ class HomeScreenState extends State<HomeScreen>{
                         child: Column(
                           children: <Widget>[
                             SizedBox(
-                              height: 75,
+                              height: 90,
                               child: Image.asset("images/logo.png",
                                 fit: BoxFit.contain,
                               ),
@@ -179,5 +187,13 @@ class HomeScreenState extends State<HomeScreen>{
         ),
       ),
     );
+  }
+  void logIn(String email, String password) async{
+    if (formKey.currentState!.validate()){
+      await auth.signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) =>
+          Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const MyHomePage())));
+    }
   }
 }
