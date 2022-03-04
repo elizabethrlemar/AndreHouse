@@ -4,13 +4,13 @@ import 'anon_clothing.dart';
 import 'anon_shower.dart';
 import 'help_page.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class AnonHomePage extends StatefulWidget {
+  const AnonHomePage({Key? key}) : super(key: key);
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<AnonHomePage> {
 
   @override
   Widget build(BuildContext context) {
