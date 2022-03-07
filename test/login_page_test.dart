@@ -5,10 +5,14 @@ void main(){
 
   test('First Test',(){
 
-    final ScreenState createState()=>ScreenState;
+    //final ScreenState createState()=>ScreenState;
 
-    expect(createState.return,ScreenState);
+   // expect(createState.value,ScreenState);
 
+  });
+
+  testWidgets('MyWidget has login credentials'(WidgeTester tester)async{
+    
   });
 
 }
