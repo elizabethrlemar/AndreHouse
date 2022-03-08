@@ -2,6 +2,7 @@ import 'package:andre_house/StaffPages/staff_clothing.dart';
 import 'staff_shower.dart';
 import 'package:flutter/material.dart';
 import 'package:andre_house/GuestPages/help_page.dart';
+import 'package:andre_house/login_page.dart';
 class MyStaffHomePage extends StatefulWidget {
   const MyStaffHomePage({Key? key}) : super(key: key);
   @override
@@ -149,6 +150,31 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                       ),
                     ],
                   ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                    padding: const EdgeInsets.all(20),
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: <Widget>[
+                        Expanded(
+                          child: IconButton(
+                              icon: Icon(Icons.logout),
+                              iconSize: 100,
+                              color: Colors.black,
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                                );}
+                          ),),
+                        const Text(
+                          "Logout",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    )
                 ),
               ),
             ],
