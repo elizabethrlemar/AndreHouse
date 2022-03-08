@@ -16,41 +16,27 @@ class _ShowerState extends State<GuestShowerPage> {
         backgroundColor: Colors.blue,
       ),
       body: Center(
-        child: GridView.count(
-          scrollDirection: Axis.vertical,
-          crossAxisCount: 2,
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: IconButton(
-                      icon: const Icon(Icons.shower),
-                      iconSize: 100,
-                      color: Colors.blue,
-                      onPressed: () {},
-                    )
-                  ),
-                    const Text(
-                      'Sign-Up',
-                      style: TextStyle(fontSize: 20),
-                    )
-                ]
-              )
-            ),
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                    const Text(
-                      "My Spot in Line",
-                      style: TextStyle(fontSize: 20),
-                    )
-                  ]
-                )
-            ),
-          ]
+    child: Container(
+    width: double.infinity,
+        child:
+        Align(
+            alignment: Alignment.bottomCenter,
+            child:
+            ButtonTheme.fromButtonThemeData(
+              data: Theme.of(context).buttonTheme.copyWith(
+                minWidth: 300.0,
+                height: 50.0,
+                buttonColor: Colors.green,
+              ),
+              child: RaisedButton(
+                onPressed: (){} ,
+                child: const Text ('Get in Line',
+                  style: TextStyle(fontSize: 20, color: Colors.white),),
+              ),
+            )
         )
-      ),
+    ),
+    )
     );
   }
 }

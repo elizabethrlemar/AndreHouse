@@ -16,41 +16,27 @@ class _ClothingState extends State<GuestClothingPage> {
         backgroundColor: Colors.pink,
       ),
       body: Center(
-          child: GridView.count(
-              scrollDirection: Axis.vertical,
-              crossAxisCount: 2,
-              children: <Widget>[
-                Expanded(
-                    child: Column(
-                        children: <Widget>[
-                          Expanded(
-                              child: IconButton(
-                                icon: const Icon(Icons.checkroom),
-                                iconSize: 100,
-                                color: Colors.red,
-                                onPressed: () {},
-                              )
-                          ),
-                          const Text(
-                            'Sign-Up',
-                            style: TextStyle(fontSize: 20),
-                          )
-                        ]
-                    )
-                ),
-                Expanded(
-                    child: Column(
-                        children: <Widget>[
-                          const Text(
-                            "My Spot in Line",
-                            style: TextStyle(fontSize: 20),
-                          )
-                        ]
-                    )
-                ),
-              ]
+          child: Container(
+              width: double.infinity,
+            child:
+              Align(
+                alignment: Alignment.bottomCenter,
+                child:
+                ButtonTheme.fromButtonThemeData(
+                    data: Theme.of(context).buttonTheme.copyWith(
+                        minWidth: 300.0,
+                        height: 50.0,
+                        buttonColor: Colors.green,
+                    ),
+                    child: RaisedButton(
+                    onPressed: (){} ,
+                    child: const Text ('Get in Line',
+                      style: TextStyle(fontSize: 20, color: Colors.white),),
+              ),
+              )
           )
       ),
+      )
     );
   }
 }
