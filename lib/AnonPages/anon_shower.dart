@@ -1,4 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+FirebaseFirestore showers = FirebaseFirestore.instance;
+
+
 /*Page that allows guests to sign up for showers*/
 class AnonShowerPage extends StatefulWidget {
   const AnonShowerPage({Key? key}) : super(key: key);
@@ -7,6 +13,7 @@ class AnonShowerPage extends StatefulWidget {
 }
 
 class _ShowerState extends State<AnonShowerPage> {
+
 
   final TextEditingController nameController = TextEditingController();
 
@@ -49,7 +56,7 @@ class _ShowerState extends State<AnonShowerPage> {
                 .size
                 .width,
             onPressed: () {
-              print(nameController.text);
+              addUser(nameController.text);
             },
             child: const Text("Submit Name", style: TextStyle(fontSize: 20)),
             textColor: Colors.white,
@@ -110,4 +117,25 @@ class _ShowerState extends State<AnonShowerPage> {
       ),
     );
   }
+}
+
+void addUser(name) {
+  CollectionReference showers = FirebaseFirestore.instance.collection('showers');
+
+  FirebaseFirestore.instance
+      .collection('showers')
+      .orderBy("index", descending: true)
+      .limit(1)
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+        var index = querySnapshot.docs[0]["index"]; //Everything above here in the method is to find the highest previous index
+        index = index + 1;
+        showers.add({ //add new name to showers line with an incremented index
+          'name': name,
+          'index': index
+        });
+        });
+
+
+
 }
