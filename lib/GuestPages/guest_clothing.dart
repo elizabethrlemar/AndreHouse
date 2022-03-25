@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 /* Page that allows guests to sign up for Clothing Closet*/
 class GuestClothingPage extends StatefulWidget {
   const GuestClothingPage({Key? key}) : super(key: key);
@@ -28,7 +30,7 @@ class _ClothingState extends State<GuestClothingPage> {
                                 icon: const Icon(Icons.checkroom),
                                 iconSize: 100,
                                 color: Colors.red,
-                                onPressed: () {},
+                                onPressed: () {joinLine();},
                               )
                           ),
                           const Text(
@@ -41,8 +43,16 @@ class _ClothingState extends State<GuestClothingPage> {
                 Expanded(
                     child: Column(
                         children: <Widget>[
+                          Expanded(
+                              child: IconButton(
+                                icon: const Icon(Icons.shower),
+                                iconSize: 100,
+                                color: Colors.blue,
+                                onPressed: () {findSpot();},
+                              )
+                          ),
                           const Text(
-                            "My Spot in Line",
+                            'My Spot in Line',
                             style: TextStyle(fontSize: 20),
                           )
                         ]
@@ -54,3 +64,26 @@ class _ClothingState extends State<GuestClothingPage> {
     );
   }
 }
+
+void joinLine() {
+  var name = "test";
+  CollectionReference clothing = FirebaseFirestore.instance.collection('clothing');
+
+  FirebaseFirestore.instance
+      .collection('clothing')
+      .orderBy("index", descending: true)
+      .limit(1)
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    var index = querySnapshot
+        .docs[0]["index"]; //Everything above here in the method is to find the highest previous index
+    index = index + 1;
+    clothing.add({ //add new name to clothing line with an incremented index
+      'name': name,
+      'index': index
+    });
+  });
+}
+
+void findSpot()
+{}
