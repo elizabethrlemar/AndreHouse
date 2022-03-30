@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 /* Page that allows guests to sign up for Clothing Closet*/
 class GuestClothingPage extends StatefulWidget {
   const GuestClothingPage({Key? key}) : super(key: key);
@@ -86,4 +87,25 @@ void joinLine() {
 }
 
 void findSpot()
-{}
+{
+
+  CollectionReference clothing = FirebaseFirestore.instance.collection('clothing');
+
+  var currentUser = FirebaseAuth.instance.currentUser;
+
+  String? email = "";
+  if (currentUser != null) {
+    email = currentUser.email;
+  }
+
+  FirebaseFirestore.instance
+      .collection('clothing')
+      .where('name', isEqualTo: email)
+      .limit(1)
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    var index = querySnapshot.docs[0]["index"];
+    print("The user's index is " + index.toString());
+  });
+
+}

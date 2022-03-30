@@ -91,7 +91,30 @@ void joinLine() {
       'index': index
     });
   });
+
+  print("Added user to queue.");
 }
 
 void findSpot()
-{}
+{
+
+  CollectionReference shower = FirebaseFirestore.instance.collection('showers');
+
+  var currentUser = FirebaseAuth.instance.currentUser;
+
+  String? email = "";
+  if (currentUser != null) {
+    email = currentUser.email;
+  }
+
+  FirebaseFirestore.instance
+    .collection('showers')
+    .where('name', isEqualTo: email)
+    .limit(1)
+    .get()
+    .then((QuerySnapshot querySnapshot) {
+    var index = querySnapshot.docs[0]["index"];
+    print("The user's index is " + index.toString());
+      });
+
+}
