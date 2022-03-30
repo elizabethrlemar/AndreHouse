@@ -5,3 +5,52 @@ class GuestShowerPage extends StatefulWidget {
   @override
   _ShowerState createState() => _ShowerState();
 }
+
+class _ShowerState extends State<GuestShowerPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Shower'),
+        backgroundColor: Colors.blue,
+      ),
+      body: Center(
+          child: GridView.count(
+              scrollDirection: Axis.vertical,
+              crossAxisCount: 2,
+              children: <Widget>[
+                Expanded(
+                    child: Column(
+                        children: <Widget>[
+                          Expanded(
+                              child: IconButton(
+                                icon: const Icon(Icons.shower),
+                                iconSize: 100,
+                                color: Colors.blue,
+                                onPressed: () {},
+                              )
+                          ),
+                          const Text(
+                            'Sign-Up',
+                            style: TextStyle(fontSize: 20),
+                          )
+                        ]
+                    )
+                ),
+                Expanded(
+                    child: Column(
+                        children: <Widget>[
+                          const Text(
+                            "My Spot in Line",
+                            style: TextStyle(fontSize: 20),
+                          )
+                        ]
+                    )
+                ),
+              ]
+          )
+      ),
+    );
+  }
+}
