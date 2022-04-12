@@ -1,3 +1,4 @@
+import 'package:andre_house/AnonPages/anon_clothing.dart';
 import 'package:flutter/material.dart';
 import 'package:andre_house/GuestPages/guest_signup.dart';
 import 'package:andre_house/UI/input_field.dart';
@@ -5,7 +6,7 @@ import 'package:andre_house/StaffPages/staff_homepage.dart';
 import 'package:andre_house/GuestPages/guest_homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:andre_house/AnonPages/anon_homepage.dart';
 class HomeScreen extends StatefulWidget{
   const HomeScreen({Key? key}) : super (key: key);
 
@@ -164,7 +165,7 @@ class HomeScreenState extends State<HomeScreen>{
                         //Raised Button
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => MyHomePage()));
+                              builder: (context) => AnonHomePage()));
                         },
                         color: Colors.green,
                         textColor: Colors.white,
