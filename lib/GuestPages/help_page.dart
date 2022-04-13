@@ -23,49 +23,49 @@ class _HelpState extends State<GuestHelpPage> {
                   child: Column(
                     children: <Widget> [
                       Container(
-                        child: Text("Address ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue)),
+                        child: const Text("Address ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue)),
                       ),
                       Container(
-                        child: Text(" 213 S 11th Ave.", style: TextStyle(fontSize: 20),),
+                        child: const Text(" 213 S 11th Ave.", style: TextStyle(fontSize: 20),),
                       ),
                       Container(
-                        child: Text("Phoenix, AZ", style: TextStyle(fontSize: 20),),
+                        child: const Text("Phoenix, AZ", style: TextStyle(fontSize: 20),),
                       ),
                       Container(
-                        child: Text("85007 \n", style: TextStyle(fontSize: 20),),
+                        child: const Text("85007 \n", style: TextStyle(fontSize: 20),),
                       ),
                       Container(
-                        child: Text("Contact Us ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),),
+                        child: const Text("Contact Us ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),),
                       ),
                       Container(
-                        child: Text("(602)-255-0580\n", style: TextStyle(fontSize: 20),),
+                        child: const Text("(602)-255-0580\n", style: TextStyle(fontSize: 20),),
                       ),
                       Container(
-                        child: Text("Showers Hours ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),),
+                        child: const Text("Showers Hours ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),),
                       ),
                       Container(
-                        child: Text("Monday - Thursday and Saturday", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                        child: const Text("Monday - Thursday and Saturday", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                       ),
                       Container(
-                        child: Text("1:00 pm - 3:00 pm\n", style: TextStyle(fontSize: 20),),
+                        child: const Text("1:00 pm - 3:00 pm\n", style: TextStyle(fontSize: 20),),
                       ),
                       Container(
-                        child: Text("Clothing Closet Hours ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.blue),),
+                        child: const Text("Clothing Closet Hours ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.blue),),
                       ),
                       Container(
-                        child: Text(" Monday and Thursday", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)
+                        child: const Text(" Monday and Thursday", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)
                         )
                       ),
                       Container(
-                          child: Text("10:00 am - 12:00 pm", style: TextStyle(fontSize: 20,)
+                          child: const Text("10:00 am - 12:00 pm", style: TextStyle(fontSize: 20,)
                           )
                       ),
                       Container(
-                          child: Text("Saturday", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
+                          child: const Text("Saturday", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
                           )
                       ),
                       Container(
-                          child: Text("1:00 pm - 3:00 pm\n", style: TextStyle(fontSize: 20,)
+                          child: const Text("1:00 pm - 3:00 pm\n", style: TextStyle(fontSize: 20,)
                           )
                       ),
                     ],

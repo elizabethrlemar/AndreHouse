@@ -302,6 +302,6 @@ class SignUpScreenState extends State<SignUpScreen> {
     .set(userModel.toMap());
 
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => MyHomePage()));
+        builder: (context) => const MyHomePage()));
   }
 }

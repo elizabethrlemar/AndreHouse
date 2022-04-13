@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 /*Page that allows guests to sign up for showers*/
+bool _hasBeenPressed = false;
 class GuestShowerPage extends StatefulWidget {
   const GuestShowerPage({Key? key}) : super(key: key);
   @override
@@ -21,26 +22,8 @@ class _ShowerState extends State<GuestShowerPage> {
       body: Center(
         child: GridView.count(
           scrollDirection: Axis.vertical,
-          crossAxisCount: 2,
+          crossAxisCount: 1,
           children: <Widget>[
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: IconButton(
-                      icon: const Icon(Icons.shower),
-                      iconSize: 100,
-                      color: Colors.blue,
-                      onPressed: () {joinLine();},
-                    )
-                  ),
-                    const Text(
-                      'Sign-Up',
-                      style: TextStyle(fontSize: 20),
-                    )
-                ]
-              )
-            ),
             Expanded(
                 child: Column(
                     children: <Widget>[
@@ -59,6 +42,30 @@ class _ShowerState extends State<GuestShowerPage> {
                     ]
                 )
             ),
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      margin: const EdgeInsets.all(5),
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary:_hasBeenPressed ? Colors.orange : Colors.green ),
+                        child: _hasBeenPressed ? const Text('Leave Line', style: TextStyle(fontSize: 20),): const Text('Join Line', style: TextStyle(fontSize: 20),),
+                        onPressed: () {
+                          setState(() {
+                            _hasBeenPressed = !_hasBeenPressed;
+                          });
+                          joinLine();},
+
+                      ),
+                    ),
+                  )
+                ]
+              )
+            ),
+
           ]
         )
       ),

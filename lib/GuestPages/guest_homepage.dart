@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: <Widget>[
                           Expanded(
                             child: IconButton(
-                              icon: Icon(Icons.help),
+                              icon: const Icon(Icons.help),
                               iconSize: 100,
                               color: Colors.green,
                               onPressed: (){
@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: <Widget>[
                             Expanded(
                               child: IconButton(
-                                  icon: Icon(Icons.logout),
+                                  icon: const Icon(Icons.logout),
                                   iconSize: 100,
                                   color: Colors.black,
                                   onPressed: (){
