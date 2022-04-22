@@ -106,11 +106,12 @@ class SignUpScreenState extends State<SignUpScreen> {
         controller: emailEditController,
         keyboardType: TextInputType.emailAddress,
         validator: (value){
+          RegExp reg = RegExp(r'^.{6,}$');
           if(value!.isEmpty){
-            return("Email cannot be empty");
+            return("Username cannot be empty");
           }
-          if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+[a-z]").hasMatch(value)){
-            return("Please enter a valid email");
+          if(!reg.hasMatch(value)){
+            return("Password must be at least 6 letters");
           }
           return null;
         },
@@ -123,7 +124,7 @@ class SignUpScreenState extends State<SignUpScreen> {
           filled: true,
           prefixIcon: const Icon(Icons.mail),
           contentPadding: const EdgeInsets.fromLTRB(10, 15, 20, 15),
-          hintText: "Email",
+          hintText: "Username",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -192,7 +193,7 @@ class SignUpScreenState extends State<SignUpScreen> {
           child: MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
             onPressed: () {
-              signUp(emailEditController.text, passwordEditController.text);
+              signUp(emailEditController.text + "@andre_house.com", passwordEditController.text);
             },
             child: const Text("Sign Up", style: TextStyle(fontSize: 20)),
             textColor: Colors.white,
