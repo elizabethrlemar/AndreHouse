@@ -10,8 +10,17 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:andre_house/main.dart';
 
+
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Initialize widget', (WidgetTester tester) async {
+
+    await tester.pumpWidget( MyApp());
+
+    runApp(MyApp());
+
+
+
+
 
   });
 }
