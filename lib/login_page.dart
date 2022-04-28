@@ -18,7 +18,7 @@ class HomeScreenState extends State<HomeScreen>{
 
   final formKey = GlobalKey<FormState>();
 
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   final auth = FirebaseAuth.instance;
@@ -26,9 +26,9 @@ class HomeScreenState extends State<HomeScreen>{
 
   @override
   Widget build(BuildContext context){
-    final emailForm = TextFormField(
+    final usernameForm = TextFormField(
       autofocus: false,
-      controller: emailController,
+      controller: usernameController,
       keyboardType: TextInputType.emailAddress,
       validator: (value){
         RegExp reg = RegExp(r'^.{6,}$');
@@ -41,7 +41,7 @@ class HomeScreenState extends State<HomeScreen>{
         return null;
       },
       onSaved: (value){
-        emailController.text = value!;
+        usernameController.text = value!;
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
@@ -92,7 +92,7 @@ class HomeScreenState extends State<HomeScreen>{
           child: MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
             onPressed: () {
-              logIn(emailController.text + "@andrehouse.com", passwordController.text);
+              logIn(usernameController.text + "@andrehouse.com", passwordController.text);
             },
             child: const Text("Login", style: TextStyle(fontSize: 20)),
             textColor: Colors.white,
@@ -130,7 +130,7 @@ class HomeScreenState extends State<HomeScreen>{
                               ),
                             ),
                             const SizedBox(height: 25),
-                            emailForm,
+                            usernameForm,
                             const SizedBox(height: 8),
                             passwordForm,
                             const SizedBox(height: 25),
@@ -190,9 +190,9 @@ class HomeScreenState extends State<HomeScreen>{
       ),
     );
   }
-  void logIn(String email, String password) async{
+  void logIn(String username, String password) async{
     if (formKey.currentState!.validate()){
-      await auth.signInWithEmailAndPassword(email: email, password: password)
+      await auth.signInWithEmailAndPassword(email: username, password: password)
           .then((uid) =>
           Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => const MyHomePage())));

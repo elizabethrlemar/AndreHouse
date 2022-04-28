@@ -35,7 +35,7 @@ class SignUpScreenState extends State<SignUpScreen> {
 
   final firstNameEditController = TextEditingController();
   final lastNameEditController = TextEditingController();
-  final emailEditController = TextEditingController();
+  final usernameEditController = TextEditingController();
   final passwordEditController = TextEditingController();
   final confirmPasswordEditController = TextEditingController();
 
@@ -101,9 +101,9 @@ class SignUpScreenState extends State<SignUpScreen> {
           ),
         ));
 
-    final emailEditForm = TextFormField(
+    final usernameEditForm = TextFormField(
         autofocus: false,
-        controller: emailEditController,
+        controller: usernameEditController,
         keyboardType: TextInputType.emailAddress,
         validator: (value){
           RegExp reg = RegExp(r'^.{6,}$');
@@ -116,13 +116,13 @@ class SignUpScreenState extends State<SignUpScreen> {
           return null;
         },
         onSaved: (value){
-          emailEditController.text = value!;
+          usernameEditController.text = value!;
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
           fillColor: Colors.white,
           filled: true,
-          prefixIcon: const Icon(Icons.mail),
+          prefixIcon: const Icon(Icons.person),
           contentPadding: const EdgeInsets.fromLTRB(10, 15, 20, 15),
           hintText: "Username",
           border: OutlineInputBorder(
@@ -193,7 +193,7 @@ class SignUpScreenState extends State<SignUpScreen> {
           child: MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
             onPressed: () {
-              signUp(emailEditController.text + "@andrehouse.com", passwordEditController.text);
+              signUp(usernameEditController.text + "@andrehouse.com", passwordEditController.text);
             },
             child: const Text("Sign Up", style: TextStyle(fontSize: 20)),
             textColor: Colors.white,
@@ -235,7 +235,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                               const SizedBox(height: 8),
                               lastNameForm,
                               const SizedBox(height: 8),
-                              emailEditForm,
+                              usernameEditForm,
                               const SizedBox(height: 8),
                               passwordEditForm,
                               const SizedBox(height: 8),
@@ -291,7 +291,7 @@ class SignUpScreenState extends State<SignUpScreen> {
 
     UserModel userModel = UserModel();
 
-    userModel.email = user!.email;
+    userModel.username = user!.email;
     userModel.uid = user.uid;
     userModel.firstName = firstNameEditController.text;
     userModel.lastName = lastNameEditController.text;
