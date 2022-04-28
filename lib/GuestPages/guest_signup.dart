@@ -1,3 +1,4 @@
+import 'package:andre_house/StaffPages/staff_homepage.dart';
 import 'package:andre_house/login_page.dart';
 import 'package:andre_house/model/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -302,7 +303,13 @@ class SignUpScreenState extends State<SignUpScreen> {
     .doc(user.uid)
     .set(userModel.toMap());
 
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const MyHomePage()));
+    if (userModel.userType == "guest"){
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const MyHomePage()));
+    }
+    else if (userModel.userType == "staff"){
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const MyStaffHomePage()));
+    }
   }
 }
