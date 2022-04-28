@@ -193,7 +193,7 @@ class SignUpScreenState extends State<SignUpScreen> {
           child: MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
             onPressed: () {
-              signUp(emailEditController.text + "@andre_house.com", passwordEditController.text);
+              signUp(emailEditController.text + "@andrehouse.com", passwordEditController.text);
             },
             child: const Text("Sign Up", style: TextStyle(fontSize: 20)),
             textColor: Colors.white,
