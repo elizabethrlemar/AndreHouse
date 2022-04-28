@@ -31,11 +31,12 @@ class HomeScreenState extends State<HomeScreen>{
       controller: emailController,
       keyboardType: TextInputType.emailAddress,
       validator: (value){
+        RegExp reg = RegExp(r'^.{6,}$');
         if(value!.isEmpty){
-          return("Please enter your email");
+          return("Please enter your username");
         }
-        if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+[a-z]").hasMatch(value)){
-          return("Please enter a valid email");
+        if(!reg.hasMatch(value)){
+          return("Please enter valid username");
         }
         return null;
       },
@@ -48,7 +49,7 @@ class HomeScreenState extends State<HomeScreen>{
         filled: true,
         prefixIcon: const Icon(Icons.person),
         contentPadding: const EdgeInsets.fromLTRB(10, 15, 20, 15),
-        hintText: "Email",
+        hintText: "Username",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -91,7 +92,7 @@ class HomeScreenState extends State<HomeScreen>{
           child: MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
             onPressed: () {
-              logIn(emailController.text, passwordController.text);
+              logIn(emailController.text + "@andrehouse.com", passwordController.text);
             },
             child: const Text("Login", style: TextStyle(fontSize: 20)),
             textColor: Colors.white,
