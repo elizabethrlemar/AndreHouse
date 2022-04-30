@@ -12,6 +12,8 @@ class StaffShowerPage extends StatefulWidget {
 class _ShowerState extends State<StaffShowerPage> {
 
   List showerLine = [];
+  bool checkBox = false;
+  List<String> userChecked = [];
 
   @override
   void initState(){
@@ -52,8 +54,23 @@ class _ShowerState extends State<StaffShowerPage> {
                       backgroundColor: Colors.white,
                       child: Icon( Icons.shower, color: Colors.blue)
                   ),
-                  // ADD STUFF HERE TO MAKE BOXES WORK
-                  trailing: Checkbox(onChanged: (bool? value) {  }, value: true),
+                  trailing: Checkbox(
+                      value: userChecked.contains(showerLine[index]['name']),
+                      onChanged: (bool? value)
+                  {
+                    void onSelected(bool selected, String dataName) {
+                      if (selected == true) {
+                        setState(() {
+                        userChecked.add(dataName);
+                        });
+                      } else {
+                          setState(() {
+                          userChecked.remove(dataName);
+                        });
+                      }
+                    };
+                  onSelected(value!, showerLine[index]['name']);
+                  }),
                 ),
               );
             },
@@ -176,3 +193,4 @@ Future getLine() async{
     return null;
   }
 }
+
