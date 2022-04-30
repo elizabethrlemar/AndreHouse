@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../model/user_model.dart';
 /*Page that allows guests to sign up for showers*/
 bool _hasBeenPressed = false;
 class GuestShowerPage extends StatefulWidget {
@@ -24,6 +26,8 @@ class _ShowerState extends State<GuestShowerPage> {
           scrollDirection: Axis.vertical,
           crossAxisCount: 1,
           children: <Widget>[
+            Column(
+            children: [
             Expanded(
                 child: Column(
                     children: <Widget>[
@@ -57,16 +61,21 @@ class _ShowerState extends State<GuestShowerPage> {
                           setState(() {
                             _hasBeenPressed = !_hasBeenPressed;
                           });
-                          joinLine();},
-
+                          if (_hasBeenPressed){
+                            joinLine();
+                          }
+                          else{
+                            print("hi delaney");
+                          }
+                          },
                       ),
                     ),
                   )
                 ]
               )
             ),
-
-          ]
+            ]
+          )]
         )
       ),
     );
@@ -74,14 +83,26 @@ class _ShowerState extends State<GuestShowerPage> {
 }
 
 void joinLine() {
+
   CollectionReference shower = FirebaseFirestore.instance.collection('showers');
 
   var currentUser = FirebaseAuth.instance.currentUser;
 
-  String? email = "";
+  String? firstName = "";
+  String? lastName = "";
 
   if (currentUser != null) {
-    email = currentUser.email;
+    FirebaseFirestore.instance.collection("users")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((value) {
+      firstName = UserModel
+          .fromMap(value.data())
+          .firstName;
+      lastName = UserModel
+          .fromMap(value.data())
+          .lastName;
+    });
   }
 
   FirebaseFirestore.instance
@@ -94,7 +115,7 @@ void joinLine() {
         .docs[0]["index"]; //Everything above here in the method is to find the highest previous index
     index = index + 1;
     shower.add({ //add new name to shower line with an incremented index
-      'name': email,
+      'name': firstName! + " " +  lastName!,
       'index': index
     });
   });
@@ -102,10 +123,14 @@ void joinLine() {
   print("Added user to queue.");
 }
 
-void findSpot()
-{
+void leaveLine() {
 
-  CollectionReference shower = FirebaseFirestore.instance.collection('showers');
+  var currentUser = FirebaseAuth.instance.currentUser;
+
+
+}
+
+void findSpot() {
 
   var currentUser = FirebaseAuth.instance.currentUser;
 
