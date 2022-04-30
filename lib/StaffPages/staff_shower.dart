@@ -9,11 +9,12 @@ class StaffShowerPage extends StatefulWidget {
   _ShowerState createState() => _ShowerState();
 }
 
+List<String> userChecked = [];
+
 class _ShowerState extends State<StaffShowerPage> {
 
   List showerLine = [];
   bool checkBox = false;
-  List<String> userChecked = [];
 
   @override
   void initState(){
@@ -44,8 +45,10 @@ class _ShowerState extends State<StaffShowerPage> {
         actions: <Widget> [
           IconButton(
             onPressed: () {
-              print("ELIZABETH");
-              deleteFromLine(userChecked);
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => sureCheck(context),
+              );
             },
             icon: const Icon(
               Icons.check_circle_outline,
@@ -218,3 +221,31 @@ Future getLine() async{
   }
 }
 
+Widget sureCheck(BuildContext context) {
+  return AlertDialog(
+    title: const Text("Remove from shower line?"),
+
+    content: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const <Widget>[
+        Text(""),
+      ],
+    ),
+    actions: <Widget>[
+      TextButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+          deleteFromLine(userChecked);
+        },
+        child: const Text('OK'),
+      ),
+      TextButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        child: const Text('Cancel'),
+      ),
+    ],
+  );
+}
