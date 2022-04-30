@@ -1,5 +1,9 @@
+
 import 'package:andre_house/login_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../model/user_model.dart';
 import 'guest_shower.dart';
 import 'guest_clothing.dart';
 import 'help_page.dart';
@@ -16,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Welcome back, <name>!"),
+        title: Text("Welcome back!"),
         centerTitle: true,
         leading: IconButton(
           icon: Image.asset("images/door.png"),
