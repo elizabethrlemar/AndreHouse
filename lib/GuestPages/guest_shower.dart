@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../model/user_model.dart';
+
 /*Page that allows guests to sign up for showers*/
 bool _hasBeenPressed = false;
 class GuestShowerPage extends StatefulWidget {
@@ -65,7 +65,7 @@ class _ShowerState extends State<GuestShowerPage> {
                             joinLine();
                           }
                           else{
-                            print("hi delaney");
+                            leaveLine();
                           }
                           },
                       ),
@@ -90,6 +90,7 @@ void joinLine() {
 
   String? firstName = "";
   String? lastName = "";
+  String? uid = "";
 
   if (currentUser != null) {
     FirebaseFirestore.instance.collection("users")
@@ -102,6 +103,9 @@ void joinLine() {
       lastName = UserModel
           .fromMap(value.data())
           .lastName;
+      uid = UserModel
+          .fromMap(value.data())
+          .uid;
     });
   }
 
@@ -116,6 +120,7 @@ void joinLine() {
     index = index + 1;
     shower.add({ //add new name to shower line with an incremented index
       'name': firstName! + " " +  lastName!,
+      'uid' : uid,
       'index': index
     });
   });
@@ -125,8 +130,16 @@ void joinLine() {
 
 void leaveLine() {
 
-  var currentUser = FirebaseAuth.instance.currentUser;
+  String? uid = FirebaseAuth.instance.currentUser!.uid;
 
+  var showersRef = FirebaseFirestore.instance.collection('showers');
+
+  FirebaseFirestore.instance.collection('showers')
+      .where("uid", isEqualTo: uid)
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+        showersRef.doc(querySnapshot.docs[0].id).delete();
+  });
 
 }
 
