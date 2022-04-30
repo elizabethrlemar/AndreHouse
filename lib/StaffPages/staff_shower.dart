@@ -41,6 +41,18 @@ class _ShowerState extends State<StaffShowerPage> {
         centerTitle: true,
         title: const Text('Shower'),
         backgroundColor: Colors.blue,
+        actions: <Widget> [
+          IconButton(
+            onPressed: () {
+              print("ELIZABETH");
+              deleteFromLine(userChecked);
+            },
+            icon: const Icon(
+              Icons.check_circle_outline,
+              size: 24.0,
+            ),
+          ),
+        ],
       ),
       body: Center(
           child: ListView.builder(
@@ -126,10 +138,24 @@ void joinLine() {
   print("Added user to queue.");
 }
 
+void deleteFromLine(List<String> line){
+
+  var showersRef = FirebaseFirestore.instance.collection('showers');
+
+  for(int i = 0; i < line.length; i++){
+    FirebaseFirestore.instance.collection('showers')
+        .where("name", isEqualTo: line[i])
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+          showersRef.doc(querySnapshot.docs[0].id).delete();
+    });
+  }
+
+}
+
 void leaveLine() {
 
   String? uid = FirebaseAuth.instance.currentUser!.uid;
-  Stream collectionStreamShower = FirebaseFirestore.instance.collection('showers').snapshots();
 
   FirebaseFirestore.instance
       .collection("showers")
@@ -142,8 +168,6 @@ void leaveLine() {
   });
 
   var showersRef = FirebaseFirestore.instance.collection('showers');
-
-  //FirebaseFirestore.instance.collection('showers').where("index", isGreaterThan: )
 
   FirebaseFirestore.instance.collection('showers')
       .where("uid", isEqualTo: uid)
