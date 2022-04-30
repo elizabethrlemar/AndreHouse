@@ -1,4 +1,6 @@
 import 'package:andre_house/AnonPages/anon_clothing.dart';
+import 'package:andre_house/model/user_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:andre_house/GuestPages/guest_signup.dart';
 import 'package:andre_house/UI/input_field.dart';
@@ -22,7 +24,6 @@ class HomeScreenState extends State<HomeScreen>{
   final TextEditingController passwordController = TextEditingController();
 
   final auth = FirebaseAuth.instance;
-
 
   @override
   Widget build(BuildContext context){
@@ -194,8 +195,22 @@ class HomeScreenState extends State<HomeScreen>{
     if (formKey.currentState!.validate()){
       await auth.signInWithEmailAndPassword(email: username, password: password)
           .then((uid) =>
-          Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const MyHomePage())));
+          FirebaseFirestore.instance.collection("users")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get()
+          .then((value){
+            var user = UserModel.fromMap(value.data()).userType;
+            if (user == "guest"){
+              Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const MyHomePage()));
+            }
+            else if (user == "staff"){
+              Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const MyStaffHomePage()));
+            }
+          })
+      );
     }
   }
+
 }
