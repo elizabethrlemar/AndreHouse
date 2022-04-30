@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+bool _hasBeenPressed = false;
 /* Page that allows guests to sign up for Clothing Closet*/
 class GuestClothingPage extends StatefulWidget {
   const GuestClothingPage({Key? key}) : super(key: key);
   @override
   _ClothingState createState() => _ClothingState();
 }
-
 class _ClothingState extends State<GuestClothingPage> {
   @override
   Widget build(BuildContext context) {
@@ -21,26 +21,8 @@ class _ClothingState extends State<GuestClothingPage> {
       body: Center(
           child: GridView.count(
               scrollDirection: Axis.vertical,
-              crossAxisCount: 2,
+              crossAxisCount: 1,
               children: <Widget>[
-                Expanded(
-                    child: Column(
-                        children: <Widget>[
-                          Expanded(
-                              child: IconButton(
-                                icon: const Icon(Icons.checkroom),
-                                iconSize: 100,
-                                color: Colors.red,
-                                onPressed: () {joinLine();},
-                              )
-                          ),
-                          const Text(
-                            'Sign-Up',
-                            style: TextStyle(fontSize: 20),
-                          )
-                        ]
-                    )
-                ),
                 Expanded(
                     child: Column(
                         children: <Widget>[
@@ -59,6 +41,30 @@ class _ClothingState extends State<GuestClothingPage> {
                         ]
                     )
                 ),
+                Expanded(
+                    child: Column(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              margin: const EdgeInsets.all(5),
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(primary:_hasBeenPressed ? Colors.orange : Colors.green ),
+                                child: _hasBeenPressed ? const Text('Leave Line', style: TextStyle(fontSize: 20),): const Text('Join Line', style: TextStyle(fontSize: 20),),
+                                onPressed: () {
+                                  setState(() {
+                                    _hasBeenPressed = !_hasBeenPressed;
+                                  });
+                                  joinLine();},
+
+                              ),
+                            ),
+                          )
+                        ]
+                    )
+                ),
+
               ]
           )
       ),
