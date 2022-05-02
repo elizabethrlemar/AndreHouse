@@ -2,10 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-import '../model/shower_model.dart';
 import '../model/user_model.dart';
 import 'guest_clothing.dart';
+
 /*Page that allows guests to sign up for showers*/
 bool _hasBeenPressed = false;
 class GuestShowerPage extends StatefulWidget {
