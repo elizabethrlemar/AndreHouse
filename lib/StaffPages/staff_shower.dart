@@ -64,7 +64,6 @@ class _ShowerState extends State<StaffShowerPage> {
               return Card(
                 child: ListTile(
                   title: Text(showerLine[index]['name']),
-                  subtitle: Text(showerLine[index]['index'].toString()),
                   leading: const CircleAvatar(
                       backgroundColor: Colors.white,
                       child: Icon( Icons.shower, color: Colors.blue)
@@ -72,20 +71,20 @@ class _ShowerState extends State<StaffShowerPage> {
                   trailing: Checkbox(
                       value: userChecked.contains(showerLine[index]['name']),
                       onChanged: (bool? value)
-                  {
-                    void onSelected(bool selected, String dataName) {
-                      if (selected == true) {
-                        setState(() {
-                        userChecked.add(dataName);
-                        });
-                      } else {
-                          setState(() {
-                          userChecked.remove(dataName);
-                        });
-                      }
-                    };
-                  onSelected(value!, showerLine[index]['name']);
-                  }),
+                      {
+                        void onSelected(bool selected, String dataName) {
+                          if (selected == true) {
+                            setState(() {
+                              userChecked.add(dataName);
+                            });
+                          } else {
+                            setState(() {
+                              userChecked.remove(dataName);
+                            });
+                          }
+                        };
+                        onSelected(value!, showerLine[index]['name']);
+                      }),
                 ),
               );
             },
@@ -153,22 +152,11 @@ void deleteFromLine(List<String> line){
           showersRef.doc(querySnapshot.docs[0].id).delete();
     });
   }
-
 }
 
 void leaveLine() {
 
   String? uid = FirebaseAuth.instance.currentUser!.uid;
-
-  FirebaseFirestore.instance
-      .collection("showers")
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-    querySnapshot.docs.forEach((doc) {
-      print(doc["name"]);
-      print(doc["index"]);
-    });
-  });
 
   var showersRef = FirebaseFirestore.instance.collection('showers');
 
@@ -179,26 +167,6 @@ void leaveLine() {
     showersRef.doc(querySnapshot.docs[0].id).delete();
   });
 
-}
-
-void findSpot() {
-
-  var currentUser = FirebaseAuth.instance.currentUser;
-
-  String? email = "";
-  if (currentUser != null) {
-    email = currentUser.email;
-  }
-
-  FirebaseFirestore.instance
-      .collection('showers')
-      .where('name', isEqualTo: email)
-      .limit(1)
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-    var index = querySnapshot.docs[0]["index"];
-    print("The user's index is " + index.toString());
-  });
 }
 
 Future getLine() async{
