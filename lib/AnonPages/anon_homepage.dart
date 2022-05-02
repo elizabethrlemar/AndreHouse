@@ -16,7 +16,7 @@ class _MyHomePageState extends State<AnonHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Welcome back!"),
+        title: const Text("Welcome!"),
         centerTitle: true,
         leading: IconButton(
           icon: Image.asset("images/door.png"),
