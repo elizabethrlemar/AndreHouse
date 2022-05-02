@@ -16,7 +16,7 @@ class GuestShowerPage extends StatefulWidget {
 
 class _ShowerState extends State<GuestShowerPage> {
 
-  late String myEmail = "HI";
+  late String guestIndex = "Not in line";
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _ShowerState extends State<GuestShowerPage> {
                           FutureBuilder(
                             future: findSpot(),
                             builder: (context, snapshot) {
-                              return Text("My spot in line : $myEmail",
+                              return Text("My spot in line : $guestIndex",
                                   style: TextStyle(fontSize: 20));
                             },
                           ),
@@ -101,13 +101,61 @@ class _ShowerState extends State<GuestShowerPage> {
           .where("uid", isEqualTo: uid)
           .get()
           .then((ds) {
-        myEmail = ds.docs[0]["index"].toString();
-        print(myEmail);
+        guestIndex = ds.docs[0]["index"].toString();
       }).catchError((e) {
         print(e);
       });
     }
   }
+
+  Future<void> leaveLine() async {
+
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    late var currentIndex = 0;
+    var showersRef = FirebaseFirestore.instance.collection('showers');
+
+    FirebaseFirestore.instance.collection('showers')
+        .where("uid", isEqualTo: uid)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      showersRef.doc(querySnapshot.docs[0].id).delete();
+    });
+
+    if (uid != null) {
+      await FirebaseFirestore.instance
+          .collection('showers')
+          .where("uid", isEqualTo: uid)
+          .get()
+          .then((ds) {
+        currentIndex = ds.docs[0]["index"];
+      }).catchError((e) {
+        print(e);
+      });
+    }
+
+    CollectionReference shower = FirebaseFirestore.instance.collection('showers');
+
+
+
+    FirebaseFirestore.instance
+        .collection('showers')
+        .get()
+        .then((querySnapshot) {
+      querySnapshot.docs.forEach((element) {
+        if (element["index"] > currentIndex){
+          FirebaseFirestore.instance
+              .collection('showers')
+              .doc(element.id)
+              .update({
+            'index': FieldValue.increment(-1)});
+        }
+      });
+    });
+
+    guestIndex = "Not in line";
+
+  }
+
 }
 
 
@@ -153,21 +201,6 @@ void joinLine() {
       'index': index
     });
   });
-
-  print("Added user to queue.");
 }
 
-void leaveLine() {
 
-  String? uid = FirebaseAuth.instance.currentUser!.uid;
-
-  var showersRef = FirebaseFirestore.instance.collection('showers');
-
-  FirebaseFirestore.instance.collection('showers')
-      .where("uid", isEqualTo: uid)
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-    showersRef.doc(querySnapshot.docs[0].id).delete();
-  });
-
-}
