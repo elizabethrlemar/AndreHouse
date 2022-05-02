@@ -94,52 +94,6 @@ class _ShowerState extends State<StaffShowerPage> {
   }
 }
 
-void joinLine() {
-
-  CollectionReference shower = FirebaseFirestore.instance.collection('showers');
-
-  var currentUser = FirebaseAuth.instance.currentUser;
-
-  String? firstName = "";
-  String? lastName = "";
-  String? uid = "";
-
-  if (currentUser != null) {
-    FirebaseFirestore.instance.collection("users")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .get()
-        .then((value) {
-      firstName = UserModel
-          .fromMap(value.data())
-          .firstName;
-      lastName = UserModel
-          .fromMap(value.data())
-          .lastName;
-      uid = UserModel
-          .fromMap(value.data())
-          .uid;
-    });
-  }
-
-  FirebaseFirestore.instance
-      .collection('showers')
-      .orderBy("index", descending: true)
-      .limit(1)
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-    var index = querySnapshot
-        .docs[0]["index"]; //Everything above here in the method is to find the highest previous index
-    index = index + 1;
-    shower.add({ //add new name to shower line with an incremented index
-      'name': firstName! + " " +  lastName!,
-      'uid' : uid,
-      'index': index
-    });
-  });
-
-  print("Added user to queue.");
-}
-
 void deleteFromLine(List<String> line){
 
   var showersRef = FirebaseFirestore.instance.collection('showers');
@@ -152,21 +106,6 @@ void deleteFromLine(List<String> line){
           showersRef.doc(querySnapshot.docs[0].id).delete();
     });
   }
-}
-
-void leaveLine() {
-
-  String? uid = FirebaseAuth.instance.currentUser!.uid;
-
-  var showersRef = FirebaseFirestore.instance.collection('showers');
-
-  FirebaseFirestore.instance.collection('showers')
-      .where("uid", isEqualTo: uid)
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-    showersRef.doc(querySnapshot.docs[0].id).delete();
-  });
-
 }
 
 Future getLine() async{

@@ -1,3 +1,4 @@
+import 'package:andre_house/login_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -57,6 +58,10 @@ class _ShowerState extends State<AnonShowerPage> {
                 .width,
             onPressed: () {
               addUser(nameController.text);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
+              );
             },
             child: const Text("Submit Name", style: TextStyle(fontSize: 20)),
             textColor: Colors.white,
