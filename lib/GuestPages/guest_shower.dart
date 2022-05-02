@@ -20,54 +20,54 @@ class _ShowerState extends State<GuestShowerPage> {
         backgroundColor: Colors.blue,
       ),
       body: Center(
-        child: GridView.count(
-          scrollDirection: Axis.vertical,
-          crossAxisCount: 1,
-          children: <Widget>[
-            Expanded(
-                child: Column(
-                    children: <Widget>[
-                      Expanded(
-                          child: IconButton(
-                            icon: const Icon(Icons.shower),
-                            iconSize: 100,
-                            color: Colors.blue,
-                            onPressed: () {findSpot();},
+          child: GridView.count(
+              scrollDirection: Axis.vertical,
+              crossAxisCount: 1,
+              children: <Widget>[
+                Expanded(
+                    child: Column(
+                        children: <Widget>[
+                          Expanded(
+                              child: IconButton(
+                                icon: const Icon(Icons.shower),
+                                iconSize: 100,
+                                color: Colors.blue,
+                                onPressed: () {findSpot();},
+                              )
+                          ),
+                          const Text(
+                            'My Spot in Line',
+                            style: TextStyle(fontSize: 20),
                           )
-                      ),
-                      const Text(
-                        'My Spot in Line',
-                        style: TextStyle(fontSize: 20),
-                      )
-                    ]
-                )
-            ),
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      margin: const EdgeInsets.all(5),
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary:_hasBeenPressed ? Colors.orange : Colors.green ),
-                        child: _hasBeenPressed ? const Text('Leave Line', style: TextStyle(fontSize: 20),): const Text('Join Line', style: TextStyle(fontSize: 20),),
-                        onPressed: () {
-                          setState(() {
-                            _hasBeenPressed = !_hasBeenPressed;
-                          });
-                          joinLine();},
+                        ]
+                    )
+                ),
+                Expanded(
+                    child: Column(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              margin: const EdgeInsets.all(5),
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(primary:_hasBeenPressed ? Colors.orange : Colors.green ),
+                                child: _hasBeenPressed ? const Text('Leave Line', style: TextStyle(fontSize: 20),): const Text('Join Line', style: TextStyle(fontSize: 20),),
+                                onPressed: () {
+                                  setState(() {
+                                    _hasBeenPressed = !_hasBeenPressed;
+                                  });
+                                  joinLine();},
 
-                      ),
-                    ),
-                  )
-                ]
-              )
-            ),
+                              ),
+                            ),
+                          )
+                        ]
+                    )
+                ),
 
-          ]
-        )
+              ]
+          )
       ),
     );
   }
@@ -115,13 +115,13 @@ void findSpot()
   }
 
   FirebaseFirestore.instance
-    .collection('showers')
-    .where('name', isEqualTo: email)
-    .limit(1)
-    .get()
-    .then((QuerySnapshot querySnapshot) {
+      .collection('showers')
+      .where('name', isEqualTo: email)
+      .limit(1)
+      .get()
+      .then((QuerySnapshot querySnapshot) {
     var index = querySnapshot.docs[0]["index"];
     print("The user's index is " + index.toString());
-      });
+  });
 
 }

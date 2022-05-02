@@ -3,26 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../model/user_model.dart';
 
-class StaffShowerPage extends StatefulWidget {
-  const StaffShowerPage({Key? key}) : super(key: key);
+class StaffUserPage extends StatefulWidget {
+  const StaffUserPage({Key? key}) : super(key: key);
   @override
-  _ShowerState createState() => _ShowerState();
+  _UserState createState() => _UserState();
 }
 
 List<String> userChecked = [];
 
-class _ShowerState extends State<StaffShowerPage> {
+class _UserState extends State<StaffUserPage> {
 
-  List showerLine = [];
-  bool checkBox = false;
+  List userList = [];
 
   @override
   void initState(){
     super.initState();
-    getShowerData();
+    getUserData();
   }
 
-  getShowerData() async {
+  getUserData() async {
     dynamic result = await getLine();
 
     if(result == null){
@@ -30,7 +29,7 @@ class _ShowerState extends State<StaffShowerPage> {
     }
     else{
       setState(() {
-        showerLine = result;
+        userList = result;
       });
     }
   }
@@ -40,8 +39,8 @@ class _ShowerState extends State<StaffShowerPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Shower'),
-        backgroundColor: Colors.blue,
+        title: const Text('Users'),
+        backgroundColor: Colors.purple,
         actions: <Widget> [
           IconButton(
             onPressed: () {
@@ -59,17 +58,18 @@ class _ShowerState extends State<StaffShowerPage> {
       ),
       body: Center(
           child: ListView.builder(
-            itemCount: showerLine.length,
+            itemCount: userList.length,
             itemBuilder: (context, index) {
               return Card(
                 child: ListTile(
-                  title: Text(showerLine[index]['name']),
+                  title: Text(userList[index]['firstName'] + " " + userList[index]['lastName']),
+                  subtitle: Text(userList[index]['userType']),
                   leading: const CircleAvatar(
                       backgroundColor: Colors.white,
-                      child: Icon( Icons.shower, color: Colors.blue)
+                      child: Icon( Icons.account_circle, color: Colors.blue)
                   ),
                   trailing: Checkbox(
-                      value: userChecked.contains(showerLine[index]['name']),
+                      value: userChecked.contains(userList[index]['username']),
                       onChanged: (bool? value)
                       {
                         void onSelected(bool selected, String dataName) {
@@ -83,7 +83,7 @@ class _ShowerState extends State<StaffShowerPage> {
                             });
                           }
                         };
-                        onSelected(value!, showerLine[index]['name']);
+                        onSelected(value!, userList[index]['username']);
                       }),
                 ),
               );
@@ -94,94 +94,32 @@ class _ShowerState extends State<StaffShowerPage> {
   }
 }
 
-void joinLine() {
+void deleteFromList(List<String> line){
 
-  CollectionReference shower = FirebaseFirestore.instance.collection('showers');
-
-  var currentUser = FirebaseAuth.instance.currentUser;
-
-  String? firstName = "";
-  String? lastName = "";
-  String? uid = "";
-
-  if (currentUser != null) {
-    FirebaseFirestore.instance.collection("users")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .get()
-        .then((value) {
-      firstName = UserModel
-          .fromMap(value.data())
-          .firstName;
-      lastName = UserModel
-          .fromMap(value.data())
-          .lastName;
-      uid = UserModel
-          .fromMap(value.data())
-          .uid;
-    });
-  }
-
-  FirebaseFirestore.instance
-      .collection('showers')
-      .orderBy("index", descending: true)
-      .limit(1)
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-    var index = querySnapshot
-        .docs[0]["index"]; //Everything above here in the method is to find the highest previous index
-    index = index + 1;
-    shower.add({ //add new name to shower line with an incremented index
-      'name': firstName! + " " +  lastName!,
-      'uid' : uid,
-      'index': index
-    });
-  });
-
-  print("Added user to queue.");
-}
-
-void deleteFromLine(List<String> line){
-
-  var showersRef = FirebaseFirestore.instance.collection('showers');
+  var usersRef = FirebaseFirestore.instance.collection('users');
 
   for(int i = 0; i < line.length; i++){
-    FirebaseFirestore.instance.collection('showers')
-        .where("name", isEqualTo: line[i])
+    FirebaseFirestore.instance.collection('users')
+        .where("username", isEqualTo: line[i])
         .get()
         .then((QuerySnapshot querySnapshot) {
-          showersRef.doc(querySnapshot.docs[0].id).delete();
+      usersRef.doc(querySnapshot.docs[0].id).delete();
     });
   }
-}
-
-void leaveLine() {
-
-  String? uid = FirebaseAuth.instance.currentUser!.uid;
-
-  var showersRef = FirebaseFirestore.instance.collection('showers');
-
-  FirebaseFirestore.instance.collection('showers')
-      .where("uid", isEqualTo: uid)
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-    showersRef.doc(querySnapshot.docs[0].id).delete();
-  });
-
 }
 
 Future getLine() async{
-  List showerList = [];
+  List userList = [];
   try{
     await FirebaseFirestore.instance
-        .collection('showers')
-        .orderBy("index", descending: false)
+        .collection('users')
         .get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((element) {
-        showerList.add(element.data());
+        userList.add(element.data());
       });
     });
-    return showerList;
+    return userList;
   }
   catch(e){
     print(e.toString());
@@ -191,7 +129,7 @@ Future getLine() async{
 
 Widget sureCheck(BuildContext context) {
   return AlertDialog(
-    title: const Text("Remove from shower line?"),
+    title: const Text("Remove user account?"),
 
     content: Column(
       mainAxisSize: MainAxisSize.min,
@@ -204,7 +142,7 @@ Widget sureCheck(BuildContext context) {
       TextButton(
         onPressed: () {
           Navigator.of(context).pop();
-          deleteFromLine(userChecked);
+          deleteFromList(userChecked);
         },
         child: const Text('OK'),
       ),
