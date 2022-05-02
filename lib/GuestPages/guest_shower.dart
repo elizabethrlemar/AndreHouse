@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../model/shower_model.dart';
 import '../model/user_model.dart';
+import 'guest_clothing.dart';
 /*Page that allows guests to sign up for showers*/
 bool _hasBeenPressed = false;
 class GuestShowerPage extends StatefulWidget {
@@ -13,6 +15,9 @@ class GuestShowerPage extends StatefulWidget {
 }
 
 class _ShowerState extends State<GuestShowerPage> {
+
+  late String myEmail = "HI";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,10 +42,13 @@ class _ShowerState extends State<GuestShowerPage> {
                                 onPressed: () {findSpot();},
                               )
                           ),
-                          const Text(
-                            'My Spot in Line',
-                            style: TextStyle(fontSize: 20),
-                          )
+                          FutureBuilder(
+                            future: findSpot(),
+                            builder: (context, snapshot) {
+                              return Text("My spot in line : $myEmail",
+                                  style: TextStyle(fontSize: 20));
+                            },
+                          ),
                         ]
                     )
                 ),
@@ -84,7 +92,24 @@ class _ShowerState extends State<GuestShowerPage> {
       ),
     );
   }
+
+  findSpot() async {
+    final uid = await FirebaseAuth.instance.currentUser!.uid;
+    if (uid != null) {
+      await FirebaseFirestore.instance
+          .collection('showers')
+          .where("uid", isEqualTo: uid)
+          .get()
+          .then((ds) {
+        myEmail = ds.docs[0]["index"].toString();
+        print(myEmail);
+      }).catchError((e) {
+        print(e);
+      });
+    }
+  }
 }
+
 
 void joinLine() {
 
@@ -130,30 +155,6 @@ void joinLine() {
   });
 
   print("Added user to queue.");
-}
-
-void findSpot()
-{
-
-  CollectionReference shower = FirebaseFirestore.instance.collection('showers');
-
-  var currentUser = FirebaseAuth.instance.currentUser;
-
-  String? email = "";
-  if (currentUser != null) {
-    email = currentUser.email;
-  }
-
-  FirebaseFirestore.instance
-      .collection('showers')
-      .where('name', isEqualTo: email)
-      .limit(1)
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-    var index = querySnapshot.docs[0]["index"];
-    print("The user's index is " + index.toString());
-  });
-
 }
 
 void leaveLine() {
