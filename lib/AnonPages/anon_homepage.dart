@@ -103,13 +103,33 @@ class _MyHomePageState extends State<AnonHomePage> {
                             'Help',
                             style: TextStyle(fontSize: 20),
                           ),
-                          ActionChip(label: const Text("Logout"), onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const HomeScreen()));
-                          }),
                         ],
                       )
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                        padding: const EdgeInsets.all(20),
+                        alignment: Alignment.center,
+                        child: Column(
+                          children: <Widget>[
+                            Expanded(
+                              child: IconButton(
+                                  icon: const Icon(Icons.logout),
+                                  iconSize: 100,
+                                  color: Colors.black,
+                                  onPressed: (){
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => const HomeScreen()),
+                                    );}
+                              ),),
+                            const Text(
+                              "Logout",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        )
                     ),
                   ),
                 ],
