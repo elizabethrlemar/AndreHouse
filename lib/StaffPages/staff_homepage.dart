@@ -1,4 +1,6 @@
 import 'package:andre_house/StaffPages/staff_clothing.dart';
+import 'package:andre_house/StaffPages/staff_guest_create.dart';
+import 'package:andre_house/StaffPages/staff_users.dart';
 import 'staff_shower.dart';
 import 'package:flutter/material.dart';
 import 'package:andre_house/GuestPages/help_page.dart';
@@ -85,17 +87,23 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   child: Column(
-                    children: const <Widget>[
+                    children: <Widget>[
                       Expanded(
                         child: IconButton(
-                          icon: Icon(Icons.account_circle),
-                          iconSize: 100,
-                          color: Colors.purple,
-                          onPressed: null,
-                        ),
+                            padding: EdgeInsets.all(10),
+                            icon: Icon(Icons.account_circle),
+                            iconSize: 100,
+                            color: Colors.purple,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const StaffUserPage()),
+                              );
+                            }),
                       ),
                       Text(
-                        'Guests',
+                        'Users',
                         style: TextStyle(fontSize: 20),
                       ),
                     ],
@@ -108,14 +116,20 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   child: Column(
-                    children: const <Widget>[
+                    children: <Widget>[
                       Expanded(
                         child: IconButton(
-                          icon: Icon(Icons.add_circle),
-                          iconSize: 100,
-                          color: Colors.orange,
-                          onPressed: null,
-                        ),
+                            padding: EdgeInsets.all(10),
+                            icon: Icon(Icons.add_circle),
+                            iconSize: 100,
+                            color: Colors.orange,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const GuestCreatePage()),
+                              );
+                            }),
                       ),
                       Text(
                         'Create Account',
