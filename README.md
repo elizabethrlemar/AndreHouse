@@ -1,3 +1,6 @@
+Summary
+--
+
 Language: Dart
 
 SDK: Flutter
@@ -8,7 +11,8 @@ Plugins: Dart and Flutter
 
 Database: Firebase Firestore
 
-Summary
+
+Set Up Environment
 --
 - Install Flutter SDK
 - Set Up Android Studio
