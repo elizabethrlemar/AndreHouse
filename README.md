@@ -26,3 +26,11 @@ https://console.firebase.google.com/project/andrehouse-e8abe/firestore/data/~2F
 General Flutter Documentation
 
 https://docs.flutter.dev
+
+General Dart Documentation
+
+https://dart.dev/guides
+
+General Firebase Documentation
+
+https://firebase.google.com/docs
