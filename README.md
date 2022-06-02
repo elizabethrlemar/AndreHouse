@@ -1,3 +1,13 @@
+Language: Dart
+
+SDK: Flutter
+
+Editor: Android Studio
+
+Plugins: Dart and Flutter 
+
+Database: Firebase Firestore
+
 Summary
 --
 - Install Flutter SDK
