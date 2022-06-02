@@ -4,6 +4,7 @@ Summary
 - Set Up Android Studio
 - Install the Flutter and Dart Plugins
 - Get added as a member to the Users for the Firestore database
+- See pubspec files for dependencies
 
 Helpful Links
 --
